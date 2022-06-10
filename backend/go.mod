@@ -8,6 +8,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/mattn/go-sqlite3 v1.14.13
 	github.com/rocketlaunchr/dbq/v2 v2.6.0
+	golang.org/x/crypto v0.0.0-20190605123033-f99c8df09eb5
 )
 
 require (

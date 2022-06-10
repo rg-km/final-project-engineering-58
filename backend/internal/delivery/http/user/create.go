@@ -29,6 +29,7 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 	create := entity.UserDto{
 		Name: payload.Name,
 		Email: payload.Email,
+		Password: payload.Password,
 	}
 
 	user, err := x.userUsecase.Create(ctx, create)

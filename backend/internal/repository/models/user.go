@@ -7,6 +7,7 @@ type User struct {
 	Name           		string    `dbq:"name"`
 	Email          		string    `dbq:"email"`
 	Role          		string    `dbq:"role"`
+	Password       		string    `dbq:"password"`
 	CreatedAt      		time.Time `dbq:"created_at"`
 	UpdatedAt      		time.Time `dbq:"updated_at"`
 }
@@ -21,6 +22,7 @@ func TableUsers() []string {
 		"name",
 		"email",
 		"role",
+		"password",
 		"created_at",
 		"updated_at",
 	}

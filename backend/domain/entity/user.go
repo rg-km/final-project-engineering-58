@@ -2,6 +2,7 @@ package entity
 
 import (
 	"backend/pkg/common"
+	"backend/pkg/utils"
 	"errors"
 	"time"
 
@@ -13,6 +14,7 @@ type User struct {
 	Name      string
 	Email     string
 	Role      string
+	Password  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -21,6 +23,7 @@ type UserDto struct {
 	Name		string
 	Email		string
 	Role		string
+	Password	string
 }
 
 
@@ -30,8 +33,8 @@ func NewUser(payload UserDto) *User {
 		Name:		payload.Name,
 		Email:		payload.Email,
 		Role:		payload.Role,
-		CreatedAt:	time.Now(),
-		UpdatedAt:	time.Now(),
+		CreatedAt:	time.Now().UTC(),
+		UpdatedAt:	time.Now().UTC(),
 	}
 
 	return &create
@@ -52,9 +55,18 @@ func (payload *User) Validate() *multierror.Error {
 		multilerr = multierror.Append(multilerr, errors.New("role required"))
 	}
 
+	if payload.Password == "" {
+		multilerr = multierror.Append(multilerr, errors.New("password required"))
+	}
+
 	return multilerr
 }
 
 func (payload *User) SetRole(role string) {
 	payload.Role = role
+}
+
+func (payload *User) SetPasswordHash(password string) {
+	pwd, _ := utils.HashPassword(password)
+	payload.Password = pwd
 }

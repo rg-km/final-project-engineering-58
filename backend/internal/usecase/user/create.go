@@ -16,6 +16,8 @@ func (x *userInteractor) Create(ctx context.Context, payload entity.UserDto) (*e
 
 	create.SetRole("member")
 
+	create.SetPasswordHash(payload.Password)
+
 	errFeedback := create.Validate()
 
 	if errFeedback != nil {

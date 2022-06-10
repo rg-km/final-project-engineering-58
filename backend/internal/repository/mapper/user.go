@@ -14,6 +14,7 @@ func ToModelUser(dt *entity.User) *models.User {
 		Name: 		dt.Name,
 		Role:		dt.Role,
 		Email:		dt.Email,
+		Password:	dt.Password,
 		CreatedAt:	dt.CreatedAt,
 		UpdatedAt:	dt.UpdatedAt,
 	}

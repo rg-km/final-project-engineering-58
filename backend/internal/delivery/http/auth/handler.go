@@ -1,4 +1,4 @@
-package login_http_handler
+package auth_http_handler
 
 import (
 	"backend/domain/usecase"
@@ -23,4 +23,6 @@ func AuthHttpHandler(r *mux.Router, repo repository.UserRepository, config *conf
 	}
 
 	r.HandleFunc("/api/auth/login", handler.Login).Methods("POST")
+	r.HandleFunc("/api/auth/register", handler.Register).Methods("POST")
 }
+

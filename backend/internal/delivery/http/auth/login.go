@@ -12,9 +12,9 @@ import (
 	"net/http"
 )
 
-func (x loginHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
+func (x authHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
 	var (
-		payload request.CreateUserPayload
+		payload request.CreateAuthPayload
 		ctx     = context.Background()
 	)
 
@@ -25,13 +25,12 @@ func (x loginHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	create := entity.UserDto{
-		Name:     payload.Name,
+	create := entity.Auth{
 		Email:    payload.Email,
 		Password: payload.Password,
 	}
 
-	user, err := x.userUsecase.Create(ctx, create)
+	user, err := x.authUsecase.Login(ctx, create)
 
 	if err != nil {
 		utils.RespondWithError(w, exceptions.MapToHttpStatusCode(err.Status), err.Errors.Errors)

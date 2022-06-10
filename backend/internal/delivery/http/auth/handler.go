@@ -4,23 +4,23 @@ import (
 	"backend/domain/usecase"
 	"backend/internal/config"
 	"backend/internal/repository"
-	"backend/internal/usecase/user"
+	"backend/internal/usecase/auth"
 
 	"github.com/gorilla/mux"
 )
 
-type loginHttpHandler struct {
+type authHttpHandler struct {
 	cfg         *config.Config
-	userUsecase usecase.UserUsecase
+	authUsecase usecase.AuthUsecase
 }
 
-func LoginHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) {
+func AuthHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) {
 
-	httpInteractor := user.LoginInteractor(&repo, config)
-	handler := &loginHttpHandler{
+	httpInteractor := auth.NewAuthInteractor(&repo, config)
+	handler := &authHttpHandler{
 		cfg:         config,
-		userUsecase: httpInteractor,
+		authUsecase: httpInteractor,
 	}
 
-	r.HandleFunc("/api/login", handler.Login).Methods("POST")
+	r.HandleFunc("/api/auth/login", handler.Login).Methods("POST")
 }

@@ -1,18 +1,18 @@
-package user
+package auth
 
 import (
 	"backend/domain/repository"
 	"backend/internal/config"
 )
 
-type userInteractor struct {
+type authInteractor struct {
 	userRepo repository.UserRepository
 	cfg      *config.Config
 }
 
-func NewUserInteractor(repo repository.UserRepository, config *config.Config) *userInteractor {
+func NewAuthInteractor(repo repository.UserRepository, config *config.Config) *authInteractor {
 
-	return &userInteractor{
+	return &authInteractor{
 		userRepo: repo,
 		cfg:      config,
 	}

@@ -2,6 +2,7 @@ package entity
 
 import (
 	"backend/pkg/common"
+	"backend/pkg/utils"
 	"errors"
 	"time"
 
@@ -31,10 +32,9 @@ func NewUser(payload UserDto) *User {
 		ID:			common.NewID(),
 		Name:		payload.Name,
 		Email:		payload.Email,
-		Password:	payload.Password,
 		Role:		payload.Role,
-		CreatedAt:	time.Now(),
-		UpdatedAt:	time.Now(),
+		CreatedAt:	time.Now().UTC(),
+		UpdatedAt:	time.Now().UTC(),
 	}
 
 	return &create
@@ -64,4 +64,9 @@ func (payload *User) Validate() *multierror.Error {
 
 func (payload *User) SetRole(role string) {
 	payload.Role = role
+}
+
+func (payload *User) SetPasswordHash(password string) {
+	pwd, _ := utils.HashPassword(password)
+	payload.Password = pwd
 }

@@ -13,9 +13,18 @@ import (
 func (x *authInteractor) Login(ctx context.Context, payload entity.Auth) (*entity.User, *exceptions.CustomError) {
 	var multilerr *multierror.Error
 
-	user, err := x.userRepo.FindByEmail(ctx, payload.Email)
+	err := payload.Validate()
+	
 	if err != nil {
-		multilerr = multierror.Append(multilerr, err)
+		return nil, &exceptions.CustomError{
+			Errors: err,
+			Status: exceptions.ERRDOMAIN,
+		}
+	}
+
+	user, errUser := x.userRepo.FindByEmail(ctx, payload.Email)
+	if errUser != nil {
+		multilerr = multierror.Append(multilerr, errUser)
 		return nil, &exceptions.CustomError{
 			Errors: multilerr,
 			Status: exceptions.ERRREPOSITORY,

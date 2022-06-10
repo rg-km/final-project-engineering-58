@@ -17,6 +17,7 @@ func main() {
 		name		string,
 		email		string,
 		role		string,
+		password 	string,
 		created_at	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 		updated_at	TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 	);`

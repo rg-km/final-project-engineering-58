@@ -48,6 +48,8 @@ func (x *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 	}
 
 	result := dbq.MustQ(ctx, x.db, stmt, opts, email)
+	fmt.Println(result.(*models.User))
+	fmt.Println(result)
 
 	if result == nil {
 		return nil, errors.New("user not found")

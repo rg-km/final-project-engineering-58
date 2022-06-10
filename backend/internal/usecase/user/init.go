@@ -6,14 +6,22 @@ import (
 )
 
 type userInteractor struct {
-	userRepo	repository.UserRepository
-	cfg			*config.Config
+	userRepo repository.UserRepository
+	cfg      *config.Config
 }
 
 func NewUserInteractor(repo repository.UserRepository, config *config.Config) *userInteractor {
 
 	return &userInteractor{
 		userRepo: repo,
-		cfg: config,
+		cfg:      config,
+	}
+}
+
+func LoginInteractor(repo repository.UserRepository, config *config.Config) *userInteractor {
+
+	return &userInteractor{
+		userRepo: repo,
+		cfg:      config,
 	}
 }

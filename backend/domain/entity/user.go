@@ -12,6 +12,7 @@ type User struct {
 	ID        common.ID
 	Name      string
 	Email     string
+	Password  string
 	Role      string
 	CreatedAt time.Time
 	UpdatedAt time.Time
@@ -20,6 +21,7 @@ type User struct {
 type UserDto struct {
 	Name		string
 	Email		string
+	Password	string
 	Role		string
 }
 
@@ -29,6 +31,7 @@ func NewUser(payload UserDto) *User {
 		ID:			common.NewID(),
 		Name:		payload.Name,
 		Email:		payload.Email,
+		Password:	payload.Password,
 		Role:		payload.Role,
 		CreatedAt:	time.Now(),
 		UpdatedAt:	time.Now(),
@@ -46,6 +49,10 @@ func (payload *User) Validate() *multierror.Error {
 
 	if payload.Email == "" {
 		multilerr = multierror.Append(multilerr, errors.New("email required"))
+	}
+
+	if payload.Password == "" {
+		multilerr = multierror.Append(multilerr, errors.New("password required"))
 	}
 
 	if payload.Role == "" {

@@ -20,21 +20,20 @@ type User struct {
 }
 
 type UserDto struct {
-	Name		string
-	Email		string
-	Password	string
-	Role		string
+	Name     string
+	Email    string
+	Password string
+	Role     string
 }
-
 
 func NewUser(payload UserDto) *User {
 	create := User{
-		ID:			common.NewID(),
-		Name:		payload.Name,
-		Email:		payload.Email,
-		Role:		payload.Role,
-		CreatedAt:	time.Now().UTC(),
-		UpdatedAt:	time.Now().UTC(),
+		ID:        common.NewID(),
+		Name:      payload.Name,
+		Email:     payload.Email,
+		Role:      payload.Role,
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
 	}
 
 	return &create

@@ -14,6 +14,7 @@ require (
 require (
 	cloud.google.com/go v0.49.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.0.2 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
 	github.com/rocketlaunchr/mysql-go v1.1.3 // indirect

@@ -10,6 +10,9 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 func (x authHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
@@ -37,5 +40,28 @@ func (x authHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	utils.RespondWithJSON(w, http.StatusCreated, response.MapUserDomainToResponse(user))
+	expirationTime := time.Now().Add(time.Hour * 24)
+	claims := &Claims{
+		Email: user.Email,
+		Name:  user.Name,
+		Role:  user.Role,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: expirationTime.Unix(),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	strToken, errTkn := token.SignedString(jwtKey)
+	if errTkn != nil {
+		utils.RespondWithError(w, http.StatusInternalServerError, []error{errTkn})
+		return
+	}
+
+	http.SetCookie(w, &http.Cookie{
+		Name:    "token",
+		Value:   strToken,
+		Expires: expirationTime,
+	})
+
+	utils.RespondWithJSON(w, http.StatusOK, response.MapUserDomainToResponse(user))
 }

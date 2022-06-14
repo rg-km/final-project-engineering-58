@@ -45,7 +45,7 @@ func (x *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 	result := dbq.MustQ(ctx, x.db, stmt, opts, email)
 
 	if result == nil {
-		return nil, errors.New("user not found")
+		return nil, errors.New("invalid email")
 	}
 	user := mapper.ToDomainUser(result.(*models.User))
 	return user, nil

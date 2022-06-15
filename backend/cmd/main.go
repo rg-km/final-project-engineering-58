@@ -3,6 +3,7 @@ package main
 import (
 	"backend/internal/config"
 	auth_handler "backend/internal/delivery/http/auth"
+	category_handler "backend/internal/delivery/http/category"
 	user_handler "backend/internal/delivery/http/user"
 	repositories "backend/internal/repository"
 	"context"
@@ -22,6 +23,7 @@ var (
 	db			= config.InitDatabase()
 
 	userRepository 	= repositories.NewUserRepository(db)
+	categoryRepository = repositories.NewCategoryRepository(db)
 )
 
 func main() {
@@ -53,4 +55,5 @@ func main() {
 func initHandler(router *mux.Router, cfg *config.Config) {
 	auth_handler.AuthHttpHandler(router, userRepository, cfg)
 	user_handler.UserHttpHandler(router, userRepository, cfg)
+	category_handler.CategoryHttpHandler(router, categoryRepository, cfg)
 }

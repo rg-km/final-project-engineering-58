@@ -11,7 +11,6 @@ type userInteractor struct {
 }
 
 func NewUserInteractor(repo repository.UserRepository, config *config.Config) *userInteractor {
-
 	return &userInteractor{
 		userRepo: repo,
 		cfg:      config,

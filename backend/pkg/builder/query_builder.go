@@ -15,6 +15,16 @@ func INSERTStmt(tableName string, columns []string, rows int) string {
 	return fmt.Sprintf("INSERT INTO %s ( %s ) VALUES %s", tableName, strings.Join(columns, ","), values)
 }
 
+func UPDATEStmt(tableName string, columns map[string]interface{}, column string, id string) string {
+	var values []string
+
+	for k, v := range columns {
+		values = append(values, fmt.Sprintf("%s = '%s'", k, reflect.ValueOf(v).String()))
+	}
+
+	return fmt.Sprintf("UPDATE %s SET %s WHERE %s = '%s'", tableName, strings.Join(values, ","), column, id)
+}
+
 func QueryExec(ctx context.Context, db *sql.DB, stmt string, args ...interface{}) (sql.Result, error) {
 	for _, v := range args {
 		if arg := reflect.ValueOf(v); arg.Kind() == reflect.Slice {

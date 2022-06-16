@@ -18,9 +18,8 @@ export default function Testimonials() {
                             <h2>Budi<br></br><span>Front End</span></h2>
                         </div>
                         <p>
-                            Generate meaningful discussions with your audience and build a
-                            strong, loyal community. Think of the insightful conversations you
-                            miss out on with a feedback form.
+                            Belajar dengan aplikasi ini sangat bagus dan menyenangkan.
+                            Serasa muda dan berkelas, serta sederhana dan mudah dimengerti.
                         </p>
                     </div>
                 </div>
@@ -35,9 +34,8 @@ export default function Testimonials() {
                             <h2>Ani<br></br><span>Back End</span></h2>
                         </div>
                         <p>
-                            Generate meaningful discussions with your audience and build a
-                            strong, loyal community. Think of the insightful conversations you
-                            miss out on with a feedback form.
+                            Videonya sangat memahami dan mendetail, dan 
+                            saran mereka sangat sesuai deh pokoknya.
                         </p>
                     </div>
                 </div>
@@ -52,9 +50,8 @@ export default function Testimonials() {
                             <h2>Adi<br></br><span>Full Stack</span></h2>
                         </div>
                         <p>
-                            Generate meaningful discussions with your audience and build a
-                            strong, loyal community. Think of the insightful conversations you
-                            miss out on with a feedback form.
+                            Saya suka belajar dengan HaloBelajar karena memberi 
+                            kesempatan untuk mendapatkan kunci kesuksesan bisnis saya.
                         </p>
                     </div>
                 </div>

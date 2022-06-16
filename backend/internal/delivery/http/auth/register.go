@@ -1,4 +1,4 @@
-package user_http_handler
+package auth_http_handler
 
 import (
 	"backend/domain/entity"
@@ -12,7 +12,7 @@ import (
 	"net/http"
 )
 
-func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
+func (x authHttpHandler) Register(w http.ResponseWriter, r *http.Request) {
 	var (
 		payload request.CreateUserPayload
 		ctx = context.Background()
@@ -32,7 +32,7 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		Password: payload.Password,
 	}
 
-	user, err := x.userUsecase.Create(ctx, create)
+	user, err := x.authUsecase.Register(ctx, create)
 
 	if err != nil {
 		utils.RespondWithError(w, exceptions.MapToHttpStatusCode(err.Status), err.Errors.Errors)

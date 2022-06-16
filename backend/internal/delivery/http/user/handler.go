@@ -15,7 +15,6 @@ type userHttpHandler struct {
 }
 
 func UserHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) {
-
 	httpInteractor := user.NewUserInteractor(&repo, config)
 	handler := &userHttpHandler{
 		cfg:         config,

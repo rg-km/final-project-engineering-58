@@ -1,4 +1,4 @@
-package user_http_handler
+package category_http_handler
 
 import (
 	"backend/domain/entity"
@@ -12,9 +12,9 @@ import (
 	"net/http"
 )
 
-func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
+func (x *categoryHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var (
-		payload request.CreateUserPayload
+		payload request.CreateCategoryPayload
 		ctx = context.Background()
 	)
 
@@ -26,19 +26,16 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	create := entity.UserDto{
+	create := entity.CategoryDto{
 		Name: payload.Name,
-		Email: payload.Email,
-		Password: payload.Password,
 	}
 
-	user, err := x.userUsecase.Create(ctx, create)
+	category, err := x.categoryUsecase.Create(ctx, create)
 
 	if err != nil {
 		utils.RespondWithError(w, exceptions.MapToHttpStatusCode(err.Status), err.Errors.Errors)
 		return
 	}
-	
-	utils.RespondWithJSON(w, http.StatusCreated, response.MapUserDomainToResponse(user))
-}
 
+	utils.RespondWithJSON(w, http.StatusCreated, response.MapCategoryDomainToResponse(category))
+}

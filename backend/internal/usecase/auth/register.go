@@ -1,4 +1,4 @@
-package user
+package auth
 
 import (
 	"backend/domain/entity"
@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/go-multierror"
 )
 
-func (x *userInteractor) Create(ctx context.Context, payload entity.UserDto) (*entity.User, *exceptions.CustomError) {
+func (x *authInteractor) Register(ctx context.Context, payload entity.UserDto) (*entity.User, *exceptions.CustomError) {
 	var multilerr *multierror.Error
 
 	create := entity.NewUser(payload)

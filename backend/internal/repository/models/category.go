@@ -2,27 +2,21 @@ package models
 
 import "time"
 
-type User struct {
+type Category struct {
 	ID             		string    `dbq:"id"`
 	Name           		string    `dbq:"name"`
-	Email          		string    `dbq:"email"`
-	Password	 		string 	  `dbq:"password"`
-	Role          		string    `dbq:"role"`
 	CreatedAt      		time.Time `dbq:"created_at"`
 	UpdatedAt      		time.Time `dbq:"updated_at"`
 }
 
-func (User) TableName() string {
-	return `users`
+func (Category) TableName() string {
+	return `categories`
 }
 
-func TableUsers() []string {
+func TableCategories() []string {
 	return []string{
 		"id",
 		"name",
-		"email",
-		"password",
-		"role",
 		"created_at",
 		"updated_at",
 	}

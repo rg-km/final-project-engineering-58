@@ -2,9 +2,9 @@ package repository
 
 import (
 	"backend/domain/entity"
-	"backend/internal/repository/helper"
 	"backend/internal/repository/mapper"
 	"backend/internal/repository/models"
+	"backend/pkg/builder"
 	"context"
 	"database/sql"
 	"errors"
@@ -22,15 +22,10 @@ func NewUserRepository(db *sql.DB) UserRepository {
 }
 
 func (x *UserRepository) Create(ctx context.Context, payload *entity.User) error {
-	var err error
-	_ = dbq.Tx(ctx, x.db, func(tx interface{}, Q dbq.QFn, E dbq.EFn, txCommit dbq.TxCommit) {
-		err = helper.StoreUser(ctx, E, payload)
-		if err != nil {
-			return
-		}
-		_ = txCommit()
-		return
-	})
+	args := mapper.ToDbqStructUser(payload)
+	stmt := builder.INSERTStmt(models.User{}.TableName(), models.TableUsers(), len(args))
+
+	_, err := builder.QueryExec(ctx, x.db, stmt, args)
 
 	if err != nil {
 		return err

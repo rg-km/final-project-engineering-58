@@ -11,7 +11,6 @@ func InitDatabase() *sql.DB {
 	cfg := config.DatabaseSqlite()
 
 	db, err := sql.Open("sqlite3", cfg.Path)
-
 	if err != nil {
 		panic(err)
 	}

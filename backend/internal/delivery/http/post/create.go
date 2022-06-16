@@ -26,13 +26,19 @@ func (x *postHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	userId, _, errJwt := utils.DecodeJwtToken(r)
+	if errJwt != nil {
+		utils.RespondWithError(w, http.StatusBadRequest, []error{errJwt})
+		return
+	}
+
 	create := entity.PostDto{
 		Title: payload.Title,
 		Content: payload.Content,
 		Description: payload.Description,
 		UrlVideo: payload.UrlVideo,
 		CategoryID: payload.CategoryID,
-		UserID: payload.UserID,
+		UserID: userId,
 		ParentID: payload.ParentID,
 	}
 

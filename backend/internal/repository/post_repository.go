@@ -25,9 +25,6 @@ func (x *PostRepository) Create(ctx context.Context, payload *entity.Post) error
 	args := mapper.ToDbqStructPost(payload)
 	stmt := builder.INSERTStmt(models.Post{}.TableName(), models.TablePosts(), len(args))
 
-	fmt.Println(stmt)
-	fmt.Println(args)
-
 	_, err := builder.QueryExec(ctx, x.db, stmt, args)
 
 	if err != nil {

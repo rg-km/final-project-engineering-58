@@ -41,4 +41,3 @@ func (x authHttpHandler) Register(w http.ResponseWriter, r *http.Request) {
 	
 	utils.RespondWithJSON(w, http.StatusCreated, response.MapUserDomainToResponse(user))
 }
-

@@ -25,4 +25,3 @@ func AuthHttpHandler(r *mux.Router, repo repository.UserRepository, config *conf
 	r.HandleFunc("/api/auth/login", handler.Login).Methods("POST")
 	r.HandleFunc("/api/auth/register", handler.Register).Methods("POST")
 }
-

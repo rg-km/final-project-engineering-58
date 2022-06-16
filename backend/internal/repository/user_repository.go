@@ -50,3 +50,19 @@ func (x *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 	user := mapper.ToDomainUser(result.(*models.User))
 	return user, nil
 }
+
+// func (x *UserRepository) Update(ctx context.Context, payload *entity.UserDto, id string) error {
+// 	fields := map[string]interface{}{
+// 		"name": payload.Name,
+// 	}
+
+// 	stmt := builder.UPDATEStmt(models.User{}.TableName(), fields, "id", id)
+
+// 	_, err := builder.QueryExec(ctx, x.db, stmt, nil)
+
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	return nil
+// }

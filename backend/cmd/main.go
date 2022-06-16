@@ -19,10 +19,10 @@ import (
 )
 
 var (
-	cfg       	= config.InitConfig()
-	db			= config.InitDatabase()
+	cfg = config.InitConfig()
+	db  = config.InitDatabase()
 
-	userRepository 	= repositories.NewUserRepository(db)
+	userRepository     = repositories.NewUserRepository(db)
 	categoryRepository = repositories.NewCategoryRepository(db)
 )
 
@@ -36,7 +36,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	fmt.Println("Project Run on " + cfg.HttpPort)
-	err := http.ListenAndServe(cfg.HttpPort, router)
+	err := http.ListenAndServe(":8080", router)
 	if err != nil {
 		log.Fatal(err)
 	}

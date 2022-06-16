@@ -7,6 +7,9 @@
 		- [Get All Category](#get-all-category)
 		- [Update Category](#update-category)
 		- [Delete Category](#delete-category)
+	- [Auth](#auth)
+		- [Register](#register)
+		- [Login](#login)
 
 ## Category
 ### Create Category
@@ -95,5 +98,65 @@ Response:
 	"code": 200,
 	"message": "Success",
 	"data": null
+}
+```
+
+## Auth
+### Register
+`
+POST: /api/auth/register
+`
+
+Body JSON:
+```json
+{
+    "name": "Ruang",
+    "email": "Ruang@ac.id",
+    "password": "Ruang123"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+        "name": "Ruang",
+        "email": "Ruang@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+        "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+    }
+}
+```
+
+### Login
+`
+POST: /api/auth/login
+`
+
+Body JSON:
+```json
+{
+    "email": "Ruang@ac.id",
+    "password": "Ruang123"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+        "name": "Ruang",
+        "email": "Ruang@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+        "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+    }
 }
 ```

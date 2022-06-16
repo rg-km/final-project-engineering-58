@@ -1,0 +1,83 @@
+.container-all-footer {
+    margin-top: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    background: #b89c9c;
+}
+
+.container-foot {
+    padding: 200px auto 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-gap: 20px;
+}
+
+.container-foot .card-foot
+{
+    position: relative;
+    width:350px;
+    margin: 0 auto;
+    background:#333;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+/* .container-foot .card-foot .layer-foot
+{
+    position: absolute;
+    top:calc(100% - 2px);
+    left:0;
+    width:100%;
+    height: 100%;
+    background: rgba(51, 51, 51, 0.089);
+    z-index: 0.5;
+    transition: 0.5s;
+}
+
+.container-foot .card-foot:hover .layer-foot
+{
+   top: 0;
+} */
+.container-foot .card-foot .content-foot
+{
+   position: relative;
+   z-index: 2;
+}
+.container-foot .card-foot .content-foot p
+{
+   font-size: 18px;
+   line-height: 24px;
+   color:#fff;
+}
+.container-foot .card-foot .content-foot .image
+{
+   width: 100px;
+   height: 100px;
+   margin: 0 auto;
+   border-radius: 50%;
+   overflow: hidden;
+   border: 4px solid #fff;
+   box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+.container-foot .card-foot .content-foot .details-foot h2
+{ 
+   font-size: 18px;
+   color: #fff;
+}
+.container-foot .card-foot .content-foot .details-foot h2 span
+{
+    color: #c0d4dd;
+    font-size: 14px;
+    /* transition: 0.5s; */
+}
+/* .container-foot .card-foot:hover .content-foot .details-foot h2 span
+{
+    color: #fff;
+} */
+

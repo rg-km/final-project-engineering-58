@@ -11,6 +11,8 @@ nav {
     align-items: center;
     padding: 2em 0 1em;
     grid-column: 1 / -1;
+    position: fixed;
+    width: 100%;
 }
 
 .logo-nav {
@@ -42,34 +44,34 @@ h2 {
 }
 
 .container-header {
-    background-image: url("../images/background-header-1b.JPG");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    padding-bottom: 10.1%;
     height: 100%;
     width: 100%;
 }
 
 .content-header {
+    background-image: url("../images/background-header-1b.JPG");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     justify-content: center;
     align-items: center;
-    gap: 5rem;
-    margin-top: 4rem;
+    gap: 0;
+    margin-top: 0;
+    min-height: calc(100vh);
 }
 
-article {
+.content-header article {
     text-align: center;
     display: grid;
     gap: 0.6em;
-    padding: 2em;
+    padding: 5em 0em 3em 7em;
     max-width: 40rem;
     margin: 0 auto;
 }
 
-article h1 {
+.content-header article h1 {
     margin: 1em 0 0;
     font-size: 2.8rem;
     line-height: 1em;
@@ -78,13 +80,13 @@ article h1 {
     font-family: poppins, sans-serif;
 }
 
-article p {
+.content-header article p {
     line-height: 1.4;
     color: #fff;
     font-family: poppins, sans-serif;
 }
 
-article button {
+.content-header article button {
     width: max-content;
     margin: auto;
     border: 0;
@@ -100,7 +102,8 @@ article button {
 }
 
 .logo-header {
-    margin: 1em 2rem 1em;
+    /* margin: 1em 2rem 1em; */
+    margin: 5em 7em 0 auto;
     width: 400px;
     filter: drop-shadow(0px 1px 10px rgba(0, 0, 0, 0.651));
 }

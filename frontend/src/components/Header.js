@@ -22,7 +22,7 @@ export default function Header() {
                         <h1>Belajar seru dan mudah dipahami</h1>
                         <p>
                             HaloBelajar merupakan sebuah platform yang dapat membantumu
-                            dalam belajar. Ada banyak materi yang dapat kamu akses
+                            dalam belajar. Ada berbagai materi yang dapat kamu akses
                             untuk menambah pengetahuanmu.
                         </p>
                         <button className="btn btn-try">Try for free</button>

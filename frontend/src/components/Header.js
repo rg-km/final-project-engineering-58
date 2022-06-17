@@ -2,7 +2,8 @@ import React from "react";
 import "boxicons";
 import "../assets/css/Header.css"
 import Logo from "../assets/images/Logo Text Light.svg";
-import LogoText from "../assets/images/Logo Text.svg";
+import LogoText from "../assets/images/Logo.png";
+
 
 export default function Header() {
     return (

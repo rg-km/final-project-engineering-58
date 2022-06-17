@@ -7,15 +7,15 @@ import LogoText from "../assets/images/Logo Text.svg";
 export default function Header() {
     return (
         
-        <div className="container">
+        <div className="container-allHeader">
             <div className="container-header">
-                <nav role="navigation">
+                {/* <nav role="navigation">
                     <img className="logo-nav" src={LogoText} alt="Logo HaloBelajar"></img>
                     <ul class="menu-nav" role="list">
                         <li className="log-in"><a href="#">Log In</a></li>
                         <li className="sign-up"><a href="#">Sign Up</a></li>
                     </ul>
-                </nav>
+                </nav> */}
 
                 <section className="content-header">
                     <article>

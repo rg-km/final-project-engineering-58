@@ -7,6 +7,9 @@
 		- [Get All Category](#get-all-category)
 		- [Update Category](#update-category)
 		- [Delete Category](#delete-category)
+	- [Auth](#auth)
+		- [Register](#register)
+		- [Login](#login)
 
 ## Category
 ### Create Category

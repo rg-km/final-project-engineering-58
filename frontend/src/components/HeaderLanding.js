@@ -1,11 +1,11 @@
 import React from "react";
 import "boxicons";
-import "../assets/css/Header.css"
+import "../assets/css/HeaderLanding.css"
 import Logo from "../assets/images/Logo Text Light.svg";
 import LogoText from "../assets/images/Logo.png";
 
 
-export default function Header() {
+export default function HeaderLanding() {
     return (
         
         <div className="container-allHeader">

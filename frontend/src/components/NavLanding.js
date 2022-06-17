@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "boxicons";
-import "../assets/css/Navigation.css"
+import "../assets/css/NavLanding.css"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,7 +9,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from "../assets/images/Logo Text Light.svg";
 import LogoText from "../assets/images/Logo Text.svg";
 
-export default function Navigation() {
+export default function NavLanding() {
   return (
     <Navbar collapseOnSelect expand="lg" fixed="top" class="nav-default" id="nav-1">
       <Container>

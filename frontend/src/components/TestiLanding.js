@@ -1,8 +1,8 @@
 import React, { useState} from "react";
 import "boxicons";
-import "../assets/css/Testimonials.css"
+import "../assets/css/TestiLanding.css"
 
-export default function Testimonials() {
+export default function TestiLanding() {
     // const [picture, setPicture] = useState(null);
     // const [name, setName] = useState("");
     // const [category, setCategory] = useState("");

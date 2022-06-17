@@ -1,11 +1,11 @@
 import React from "react";
 import "boxicons";
-import "../assets/css/Benefit.css"
+import "../assets/css/BenefitLanding.css"
 import List1 from "../assets/images/benefit-1.png"
 import List2 from "../assets/images/benefit-2.png"
 import List3 from "../assets/images/benefit-3.png"
 
-export default function Benefit() {
+export default function BenefitLanding() {
 
     return (
         <div className="container-benefit">

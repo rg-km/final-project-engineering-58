@@ -1,9 +1,9 @@
 import React from "react";
-import "../assets/css/Footer.css";
+import "../assets/css/FooterLanding.css";
 import "boxicons";
 import LogoKM from "../assets/images/logo-km.png";
 
-export default function Footer() {
+export default function FooterLanding() {
 
     return (
         <div class="mt-5 pt-5 pb-5 container-allFooter">

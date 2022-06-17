@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState} from "react";
 import "boxicons";
 import "../assets/css/Testimonials.css"
 
 export default function Testimonials() {
+    // const [picture, setPicture] = useState(null);
+    // const [name, setName] = useState("");
+    // const [category, setCategory] = useState("");
+
+    const handlePictureChange = (e) => {
+        setPicture(e.target.value);
+    }
+
     return (
         
         <div className="container-all-testi">

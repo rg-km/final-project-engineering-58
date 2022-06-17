@@ -7,9 +7,9 @@ export default function Testimonials() {
     // const [name, setName] = useState("");
     // const [category, setCategory] = useState("");
 
-    const handlePictureChange = (e) => {
-        setPicture(e.target.value);
-    }
+    // const handlePictureChange = (e) => {
+    //     setPicture(e.target.value);
+    // }
 
     return (
         
@@ -20,7 +20,7 @@ export default function Testimonials() {
                     <div className="layer-testimonials"></div>
                     <div className="content-testimonials">
                         <div class="image">
-                            <img src="img.jpg"></img>
+                            <img src="" width="100px"></img>
                         </div>
                         <div class="details-testimonials">
                             <h2>Budi<br></br><span>Front End</span></h2>
@@ -36,7 +36,7 @@ export default function Testimonials() {
                     <div className="layer-testimonials"></div>
                     <div className="content-testimonials">
                         <div class="image">
-                            <img src="img.jpg"></img>
+                            <img src="" width="100px"></img>
                         </div>
                         <div class="details-testimonials">
                             <h2>Ani<br></br><span>Back End</span></h2>
@@ -52,7 +52,7 @@ export default function Testimonials() {
                     <div className="layer-testimonials"></div>
                     <div className="content-testimonials">
                         <div class="image">
-                            <img src="img.jpg"></img>
+                            <img src="" height="100px"></img>
                         </div>
                         <div class="details-testimonials">
                             <h2>Adi<br></br><span>Full Stack</span></h2>

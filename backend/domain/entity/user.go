@@ -4,7 +4,6 @@ import (
 	"backend/pkg/common"
 	"backend/pkg/utils"
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/hashicorp/go-multierror"
@@ -42,7 +41,6 @@ func NewUser(payload UserDto) *User {
 
 func (payload *User) Validate() *multierror.Error {
 	var multilerr *multierror.Error
-	fmt.Println(payload.Password)
 
 	if payload.Name == "" {
 		multilerr = multierror.Append(multilerr, errors.New("name required"))

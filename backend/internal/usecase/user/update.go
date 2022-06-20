@@ -1,44 +1,50 @@
 package user
 
-// import (
-// 	"backend/domain/entity"
-// 	"backend/pkg/exceptions"
-// 	"context"
+import (
+	"backend/domain/entity"
+	"backend/pkg/exceptions"
+	"context"
 
-// 	"github.com/hashicorp/go-multierror"
-// )
+	"github.com/hashicorp/go-multierror"
+)
 
-// func (x *userInteractor) Update(ctx context.Context, payload entity.UserDto, id string) (*entity.User, *exceptions.CustomError) {
-// 	var multilerr *multierror.Error
+func (x *userInteractor) Update(ctx context.Context, payload entity.UserDto, id string) (*entity.User, *exceptions.CustomError) {
+	var multilerr *multierror.Error
 
-// 	user, errFind := x.userRepo.FindByEmail(ctx, id)
-// 	if errFind != nil {
-// 		multilerr = multierror.Append(multilerr, errFind)
-// 		return nil, &exceptions.CustomError{
-// 			Errors: multilerr,
-// 			Status: exceptions.ERRREPOSITORY,
-// 		}
-// 	}
+	user, errFind := x.userRepo.FindByID(ctx, id)
+	if errFind != nil {
+		multilerr = multierror.Append(multilerr, errFind)
+		return nil, &exceptions.CustomError{
+			Errors: multilerr,
+			Status: exceptions.ERRREPOSITORY,
+		}
+	}
 
-// 	update := entity.NewUser(payload)
+	update := entity.NewUser(payload)
 
-// 	if err := update.Validate(); err != nil {
-// 		return nil, &exceptions.CustomError{
-// 			Errors: err,
-// 			Status: exceptions.ERRDOMAIN,
-// 		}
-// 	}
+	update.SetPasswordHash(payload.Password)
 
-// 	err := x.userRepo.Update(ctx, update, id)
-// 	if err != nil {
-// 		multilerr = multierror.Append(multilerr, err)
-// 		return nil, &exceptions.CustomError{
-// 			Errors: multilerr,
-// 			Status: exceptions.ERRREPOSITORY,
-// 		}
-// 	}
+	update.SetRole("member")
 
-// 	user.Name = update.Name
+	if err := update.Validate(); err != nil {
+		return nil, &exceptions.CustomError{
+			Errors: err,
+			Status: exceptions.ERRDOMAIN,
+		}
+	}
 
-// 	return user, nil
-// }
+	err := x.userRepo.Update(ctx, update, id)
+	if err != nil {
+		multilerr = multierror.Append(multilerr, err)
+		return nil, &exceptions.CustomError{
+			Errors: multilerr,
+			Status: exceptions.ERRREPOSITORY,
+		}
+	}
+
+	user.Name = update.Name
+	user.Email = update.Email
+	user.Password = update.Password
+
+	return user, nil
+}

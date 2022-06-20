@@ -22,7 +22,4 @@ func UserHttpHandler(r *mux.Router, repo repository.UserRepository, config *conf
 	}
 
 	r.HandleFunc("/api/user", handler.Create).Methods("POST")
-	r.HandleFunc("/api/user/{id}", handler.Update).Methods("PUT")
-	r.HandleFunc("/api/user/{id}", handler.Delete).Methods("DELETE")
-	r.HandleFunc("/api/user", handler.GetAll).Methods("GET")
 }

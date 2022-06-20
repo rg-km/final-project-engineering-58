@@ -36,7 +36,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	fmt.Println("Project Run on " + cfg.HttpPort)
-	err := http.ListenAndServe(":8080", router)
+	err := http.ListenAndServe(cfg.HttpPort, router)
 	if err != nil {
 		log.Fatal(err)
 	}

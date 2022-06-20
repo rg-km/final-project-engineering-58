@@ -1,11 +1,14 @@
 import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+// import Navigation from "./components/Navigation";
+// import Header from "./components/Header";
+// import Testimonials from "./components/Testimonials";
+// import Benefit from "./components/Benefit";
+import LandingPage from "./pages/LandingPage";
+
 const App = () =>{
     return (
         <div>
-            <Header />
-            <Footer />
+            <LandingPage />
         </div>
     )
 }

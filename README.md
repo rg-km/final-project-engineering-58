@@ -10,6 +10,11 @@
 	- [Auth](#auth)
 		- [Register](#register-auth)
 		- [Login](#login-auth)
+	- [Users](#users)
+		-[Create Users](#create-users)
+		-[Get All Users](#get-all-users)
+		-[Delete Users](#delete-users)
+		-[Update Users](#update-users)
 
 ## Category
 ### Create Category

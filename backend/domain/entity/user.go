@@ -27,10 +27,16 @@ type UserDto struct {
 }
 
 func NewUser(payload UserDto) *User {
+	// location := time.FixedZone("UTC", 0)
+	// now := time.Now()
+	// utc := now.In(location)
+	// utcFormat := utc.Format(time.RFC3339)
+	//corrFormat, _ := time.Parse(time.RFC3339, utcFormat)
 	create := User{
 		ID:        common.NewID(),
 		Name:      payload.Name,
 		Email:     payload.Email,
+		Password:  payload.Password,
 		Role:      payload.Role,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),

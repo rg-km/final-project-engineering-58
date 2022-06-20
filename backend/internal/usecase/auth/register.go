@@ -16,9 +16,9 @@ func (x *authInteractor) Register(ctx context.Context, payload entity.UserDto) (
 
 	create.SetRole("member")
 
-	create.SetPasswordHash(payload.Password)
-
 	errFeedback := create.Validate()
+
+	create.SetPasswordHash(payload.Password)
 
 	if errFeedback != nil {
 		return nil, &exceptions.CustomError{

@@ -1,12 +1,16 @@
 import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import LoginForm from "./components/LoginForm";
+
 const App = () =>{
     return (
-        <div>
-            <Header />
-            <Footer />
-        </div>
+        <>
+        <Routes>
+            <Route index element={<LandingPage />} />
+            <Route path="/login" element={<LoginForm />} />
+        </Routes>
+        </>
     )
 }
 

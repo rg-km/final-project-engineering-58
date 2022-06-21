@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../components/image/Logo Text.png";
+import Logo from "../assets/images/Logo Text.png";
 
 function LoginForm({ LoginForm, error }) {
   const [details, setDetails] = useState({ name: "", email: "", password: "" });

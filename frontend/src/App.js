@@ -1,15 +1,16 @@
 import React from "react";
-// import Navigation from "./components/Navigation";
-// import Header from "./components/Header";
-// import Testimonials from "./components/Testimonials";
-// import Benefit from "./components/Benefit";
+import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import LoginForm from "./components/LoginForm";
 
 const App = () =>{
     return (
-        <div>
-            <LandingPage />
-        </div>
+        <>
+        <Routes>
+            <Route index element={<LandingPage />} />
+            <Route path="/login" element={<LoginForm />} />
+        </Routes>
+        </>
     )
 }
 

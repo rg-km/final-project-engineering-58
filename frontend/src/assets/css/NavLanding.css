@@ -8,3 +8,7 @@
     font-family: poppins, sans-serif;
     color: white;
 }
+
+#login, #sign-up {
+    text-decoration: none;
+}

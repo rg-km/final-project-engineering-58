@@ -14,7 +14,7 @@ type authHttpHandler struct {
 	authUsecase usecase.AuthUsecase
 }
 
-func AuthHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) {
+func AuthHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) *mux.Router {
 
 	httpInteractor := auth.NewAuthInteractor(&repo, config)
 	handler := &authHttpHandler{
@@ -24,4 +24,5 @@ func AuthHttpHandler(r *mux.Router, repo repository.UserRepository, config *conf
 
 	r.HandleFunc("/api/auth/login", handler.Login).Methods("POST")
 	r.HandleFunc("/api/auth/register", handler.Register).Methods("POST")
+	return r
 }

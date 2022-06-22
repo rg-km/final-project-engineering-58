@@ -14,7 +14,7 @@ type userHttpHandler struct {
 	userUsecase usecase.UserUsecase
 }
 
-func UserHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) {
+func UserHttpHandler(r *mux.Router, repo repository.UserRepository, config *config.Config) *mux.Router {
 	httpInteractor := user.NewUserInteractor(&repo, config)
 	handler := &userHttpHandler{
 		cfg:         config,
@@ -25,4 +25,5 @@ func UserHttpHandler(r *mux.Router, repo repository.UserRepository, config *conf
 	r.HandleFunc("/api/user", handler.GetAll).Methods("GET")
 	r.HandleFunc("/api/user/{id}", handler.Update).Methods("PUT")
 	r.HandleFunc("/api/user/{id}", handler.Delete).Methods("DELETE")
+	return r
 }

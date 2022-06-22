@@ -44,8 +44,8 @@ function LoginForm({ LoginForm, error }) {
                     </button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Don't Have an Account? <a href="#!"
-                    class="fw-bold text-body"><u>Regist here</u></a></p>
+                <p class="text-center text-muted mt-5 mb-0">Don't Have an Account? <Link to="/sign-up"
+                    class="fw-bold text-body"><u>Regist here</u></Link></p>
 
               </form>
             </div>

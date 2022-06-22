@@ -12,3 +12,8 @@
 #login, #sign-up {
     text-decoration: none;
 }
+
+#login:hover, #sign-up:hover {
+    text-decoration: none;
+    color: #a6ccd1;
+}

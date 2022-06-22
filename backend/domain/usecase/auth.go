@@ -9,4 +9,5 @@ import (
 type AuthUsecase interface {
 	Login(context context.Context, payload entity.Auth) (*entity.User, *exceptions.CustomError)
 	Register(context context.Context, payload entity.UserDto) (*entity.User, *exceptions.CustomError)
+	Profile(context context.Context, userId string) (*entity.User, *exceptions.CustomError)
 }

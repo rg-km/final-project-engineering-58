@@ -47,10 +47,17 @@ const Player = () => {
     );
     const nextVideo = currVideoIndex === state.videos.length - 1 ? 0 : currVideoIndex + 1;
 
-    navigate({
-      pathname: `/${state.videos[nextVideo].id}`,
-      autoplay: false
-    });
+    if(nextVideo) {
+      navigate({
+        pathname: `/${state.videos[nextVideo].id}`,
+        autoplay: false
+      });
+    } else {
+      navigate({
+        pathname: `/${state.activeVideo.id}`,
+        autoplay: false
+      });
+    }
   }
 
   return (
@@ -69,10 +76,9 @@ const Player = () => {
               endCallback={handleEndCallback}
             />
           </div>
-      ) : null}
+        ) : null}
+      </div>
     </div>
-    </div>
-    
   )
 }
 

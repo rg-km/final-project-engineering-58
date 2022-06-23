@@ -18,6 +18,17 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		ctx = context.Background()
 	)
 
+	_, role, errJwt := utils.DecodeJwtToken(r)
+	if errJwt != nil {
+		utils.RespondWithError(w, http.StatusBadRequest, []error{errJwt})
+		return
+	}
+
+	if role != "admin" {
+		utils.RespondWithError(w, http.StatusUnauthorized, []error{errors.New("not authorization")})
+		return
+	}
+
 	decoder := json.NewDecoder(r.Body)
 
 	if err := decoder.Decode(&payload); err != nil {
@@ -30,6 +41,7 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		Name: payload.Name,
 		Email: payload.Email,
 		Password: payload.Password,
+		Role: payload.Role,
 	}
 
 	user, err := x.userUsecase.Create(ctx, create)
@@ -41,4 +53,3 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 	
 	utils.RespondWithJSON(w, http.StatusCreated, response.MapUserDomainToResponse(user))
 }
-

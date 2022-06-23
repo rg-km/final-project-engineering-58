@@ -45,7 +45,24 @@ func (x *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 	result := dbq.MustQ(ctx, x.db, stmt, opts, email)
 
 	if result == nil {
-		return nil, errors.New("invalid email")
+		return nil, errors.New("user not found")
+	}
+	user := mapper.ToDomainUser(result.(*models.User))
+	return user, nil
+}
+
+func (x *UserRepository) FindById(ctx context.Context, id string) (*entity.User, error) {
+	stmt := fmt.Sprintf(`SELECT * FROM %s WHERE id = ? `, models.User{}.TableName())
+	opts := &dbq.Options{
+		ConcreteStruct: models.User{},
+		DecoderConfig:  dbq.StdTimeConversionConfig(),
+		SingleResult:   true,
+	}
+
+	result := dbq.MustQ(ctx, x.db, stmt, opts, id)
+
+	if result == nil {
+		return nil, errors.New("user not found")
 	}
 	user := mapper.ToDomainUser(result.(*models.User))
 	return user, nil

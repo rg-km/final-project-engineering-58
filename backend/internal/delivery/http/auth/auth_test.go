@@ -134,6 +134,8 @@ var _ = Describe("Auth", func() {
 
 			Expect(w.Code).To(Equal(201))
 			Expect(response.Message).To(Equal("Success"))
+			Expect(response.Data.Email).To(Equal("percobaan@.ac.id"))
+			Expect(response.Data.Name).To(Equal("percobaan"))
 
 			id := response.Data.ID
 

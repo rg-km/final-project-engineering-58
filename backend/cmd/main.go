@@ -20,12 +20,12 @@ import (
 )
 
 var (
-	cfg       	= config.InitConfig()
-	db			= config.InitDatabase()
+	cfg = config.InitConfig()
+	db  = config.InitDatabase()
 
-	userRepository 	= repositories.NewUserRepository(db)
+	userRepository     = repositories.NewUserRepository(db)
 	categoryRepository = repositories.NewCategoryRepository(db)
-	postRepository = repositories.NewPostRepository(db)
+	postRepository     = repositories.NewPostRepository(db)
 )
 
 func main() {

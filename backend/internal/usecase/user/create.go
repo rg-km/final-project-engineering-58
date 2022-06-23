@@ -14,7 +14,7 @@ func (x *userInteractor) Create(ctx context.Context, payload entity.UserDto) (*e
 
 	create := entity.NewUser(payload)
 
-	create.SetRole("member")
+	create.SetRole(payload.Role)
 
 	create.SetPasswordHash(payload.Password)
 

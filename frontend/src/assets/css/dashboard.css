@@ -7,3 +7,8 @@
 .input-group {
   width: 50px;
 }
+
+.container {
+  justify-content: right;
+  justify-items: right;
+}

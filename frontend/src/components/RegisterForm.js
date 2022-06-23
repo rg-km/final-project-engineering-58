@@ -29,7 +29,7 @@ const RegisterForm = () =>{
       email : email,
       password : password
     }
-    console.log(data)
+    
   }
 
   return (

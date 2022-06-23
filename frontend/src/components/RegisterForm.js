@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useState } from "react";
 import "../assets/css/RegisterForm.css"
 import { Link } from "react-router-dom"
-export default function 
-() {
+
+
+const RegisterForm = () =>{
+  const [username,setUsername] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+  const onChangeUsername = (e) => {
+    const value = e.target.value
+    setUsername(value)
+  }
+
+  const onChangeEmail = (e) => {
+    const value = e.target.value
+    setEmail(value)
+  }
+
+  const onChangePassword = (e) => {
+    const value = e.target.value
+    setPassword(value)
+  }
+
+  const KlikDaftar = () => {
+    const data = {
+      username: username,
+      email : email,
+      password : password
+    }
+    console.log(data)
+  }
+
   return (
     <div class="">
   <div class="mask py-5 d-flex align-items-center h-100 gradient-custom-3">
@@ -16,17 +45,17 @@ export default function
               <form>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" value={username} onChange={onChangeUsername} />
                   <label class="form-label" for="form3Example1cg">Your Name</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" value={email} onChange={onChangeEmail}/>
                   <label class="form-label" for="form3Example3cg">Your Email</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" value={password} onChange={onChangePassword} />
                   <label class="form-label" for="form3Example4cg">Password</label>
                 </div>
 
@@ -44,8 +73,8 @@ export default function
 
                 <div class="d-flex justify-content-center">
                   <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                      <Link to="/dashboard">
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={KlikDaftar}>
+                      <Link to="/login">
                         Register
                       </Link>
                   </button>
@@ -64,3 +93,5 @@ export default function
     </div>
   )
 }
+
+export default RegisterForm

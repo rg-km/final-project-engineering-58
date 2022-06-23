@@ -17,7 +17,7 @@ func (x *postHttpHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if role != "admin" || role != "constributor" {
+	if role != "admin" && role != "constributor" {
 		utils.RespondWithError(w, http.StatusUnauthorized, []error{errors.New("not authorization")})
 		return
 	}

@@ -41,6 +41,7 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		Name: payload.Name,
 		Email: payload.Email,
 		Password: payload.Password,
+		Role: payload.Role,
 	}
 
 	user, err := x.userUsecase.Create(ctx, create)

@@ -6,6 +6,5 @@ type CreatePostPayload struct {
 	Content string `json:"content"`
 	UrlVideo string `json:"url_video"`
 	CategoryID string `json:"category_id"`
-	UserID string `json:"user_id"`
 	ParentID string `json:"parent_id"`
 }

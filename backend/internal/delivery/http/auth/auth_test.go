@@ -107,7 +107,7 @@ var _ = Describe("Auth", func() {
 			}
 			defer db.Close()
 
-			bodyReader := strings.NewReader(`{"name":"ruang6","email":"ruang6@.ac.id","password":"ruang66"}`)
+			bodyReader := strings.NewReader(`{"name":"percobaan","email":"percobaan@.ac.id","password":"percobaan"}`)
 
 			userRepository := repository.NewUserRepository(db)
 

@@ -18,6 +18,17 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		ctx = context.Background()
 	)
 
+	_, role, errJwt := utils.DecodeJwtToken(r)
+	if errJwt != nil {
+		utils.RespondWithError(w, http.StatusBadRequest, []error{errJwt})
+		return
+	}
+
+	if role != "admin" {
+		utils.RespondWithError(w, http.StatusUnauthorized, []error{errors.New("not authorization")})
+		return
+	}
+
 	decoder := json.NewDecoder(r.Body)
 
 	if err := decoder.Decode(&payload); err != nil {

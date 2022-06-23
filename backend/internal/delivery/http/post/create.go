@@ -26,9 +26,14 @@ func (x *postHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userId, _, errJwt := utils.DecodeJwtToken(r)
+	userId, role, errJwt := utils.DecodeJwtToken(r)
 	if errJwt != nil {
 		utils.RespondWithError(w, http.StatusBadRequest, []error{errJwt})
+		return
+	}
+
+	if role != "admin" || role != "constributor" {
+		utils.RespondWithError(w, http.StatusUnauthorized, []error{errors.New("not authorization")})
 		return
 	}
 

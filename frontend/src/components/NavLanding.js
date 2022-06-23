@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "boxicons";
 import "../assets/css/NavLanding.css"
@@ -8,6 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from "../assets/images/Logo Text Light.svg";
 import LogoText from "../assets/images/Logo Text.svg";
+// import 
 
 export default function NavLanding() {
   return (
@@ -32,8 +34,8 @@ export default function NavLanding() {
             </NavDropdown> */}
           </Nav>
           <Nav>
-            <Nav.Link href="#login" id="login">Log In</Nav.Link>
-            <Nav.Link eventKey={2} href="#sign-up" id="sign-up">Sign up</Nav.Link>
+            <Nav.Link><Link to="/login" id="login">Log In</Link></Nav.Link>
+            <Nav.Link eventKey={2}><Link to="/sign-up" id="sign-up">Sign Up</Link></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

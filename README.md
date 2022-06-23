@@ -1,5 +1,6 @@
 # Dokumen Rest API
 
+<<<<<<< HEAD
 **Token Admin**
 ```json
 eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJhZG1pbiIsInN1YiI6IjhhZjA0NmU0LWYzZjgtNDlhYi1hYjAxLWM1ODUxMGNhYWIwOSJ9.hm19mQnskQAWERIIZ5ayKU3W8yWzymoOqRpJwE9nwyU
@@ -16,6 +17,8 @@ eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJtZW1iZXIiLCJzdWIiOiI4YWY
 ```
 
 
+=======
+>>>>>>> 8013eebd76ae97071455ec0609ac4c60d2a8fa85
 **Daftar Isi**
 - [Dokumen Rest API](#dokumen-rest-api)
 	- [Category](#category)
@@ -26,6 +29,7 @@ eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJtZW1iZXIiLCJzdWIiOiI4YWY
 	- [Auth](#auth)
 		- [Register](#register-auth)
 		- [Login](#login-auth)
+<<<<<<< HEAD
 	- [Posts](#posts)
 		- [Create Post](#create-post)
 		- [Get All Post](#get-all-post)
@@ -33,14 +37,21 @@ eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJtZW1iZXIiLCJzdWIiOiI4YWY
 		- [Delete Post](#delete-post)
 	- [Users](#users)
 		- [Create User](#create-user)
+=======
+	- [Users](#users)
+		- [Create Users](#create-users)
+>>>>>>> 8013eebd76ae97071455ec0609ac4c60d2a8fa85
 		- [Get All Users](#get-all-users)
 		- [Delete Users](#delete-users)
 		- [Update Users](#update-users)
 
 ## Category
+<<<<<<< HEAD
 
 Memerlukan header *Authorization* dengan role `admin`
 
+=======
+>>>>>>> 8013eebd76ae97071455ec0609ac4c60d2a8fa85
 ### Create Category
 `
 POST: /api/category
@@ -190,6 +201,7 @@ Response:
 }
 ```
 
+<<<<<<< HEAD
 ## Posts
 
 Memerlukan header *Authorization* dengan role `admin` atau `constributor`
@@ -314,10 +326,16 @@ Response:
 Memerlukan header *Authorization* dengan role `admin`
 
 ### Create User
+=======
+## Users
+
+### Create Users
+>>>>>>> 8013eebd76ae97071455ec0609ac4c60d2a8fa85
 `
 POST: /api/user
 `
 
+<<<<<<< HEAD
 Body Json:
 
 ```json
@@ -344,6 +362,30 @@ Response:
 		"created_at": "2022-06-23 09:33:39.9423329 +0000 UTC",
 		"updated_at": "2022-06-23 09:33:39.9423345 +0000 UTC"
 	}
+=======
+Body JSON:
+```json
+{
+    "name":"ruang2",
+    "email":"ruang2@.ac.id",
+    "password":"ruang2"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "36c100e2-4d43-4312-8f44-50b39a71a8cd",
+        "name": "ruang2",
+        "email": "ruang2@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-20 05:51:13.082240063 +0000 UTC",
+        "updated_at": "2022-06-20 05:51:13.082240134 +0000 UTC"
+    }
+>>>>>>> 8013eebd76ae97071455ec0609ac4c60d2a8fa85
 }
 ```
 
@@ -415,5 +457,8 @@ Response:
 ```
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8013eebd76ae97071455ec0609ac4c60d2a8fa85

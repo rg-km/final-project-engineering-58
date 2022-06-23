@@ -24,3 +24,11 @@ func MapUserDomainToResponse(user *entity.User) UserResponse {
 		UpdatedAt: user.UpdatedAt.String(),
 	}
 }
+
+func MapUserListDomainToResponse(user []*entity.User) []UserResponse {
+	var users []UserResponse
+	for _, u := range user {
+		users = append(users, MapUserDomainToResponse(u))
+	}
+	return users
+}

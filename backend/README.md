@@ -23,6 +23,9 @@ eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJtZW1iZXIiLCJzdWIiOiI4YWY
 		- [Get All Category](#get-all-category)
 		- [Update Category](#update-category)
 		- [Delete Category](#delete-category)
+	- [Auth](#auth)
+		- [Register](#register-auth)
+		- [Login](#login-auth)
 	- [Posts](#posts)
 		- [Create Post](#create-post)
 		- [Get All Post](#get-all-post)
@@ -30,6 +33,9 @@ eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJtZW1iZXIiLCJzdWIiOiI4YWY
 		- [Delete Post](#delete-post)
 	- [Users](#users)
 		- [Create User](#create-user)
+		- [Get All Users](#get-all-users)
+		- [Delete Users](#delete-users)
+		- [Update Users](#update-users)
 
 ## Category
 
@@ -121,6 +127,66 @@ Response:
 	"code": 200,
 	"message": "Success",
 	"data": null
+}
+```
+
+## Auth
+### Register
+`
+POST: /api/auth/register
+`
+
+Body JSON:
+```json
+{
+    "name": "Ruang",
+    "email": "Ruang@ac.id",
+    "password": "Ruang123"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+        "name": "Ruang",
+        "email": "Ruang@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+        "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+    }
+}
+```
+
+### Login
+`
+POST: /api/auth/login
+`
+
+Body JSON:
+```json
+{
+    "email": "Ruang@ac.id",
+    "password": "Ruang123"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+        "name": "Ruang",
+        "email": "Ruang@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+        "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+    }
 }
 ```
 
@@ -278,5 +344,72 @@ Response:
 		"created_at": "2022-06-23 09:33:39.9423329 +0000 UTC",
 		"updated_at": "2022-06-23 09:33:39.9423345 +0000 UTC"
 	}
+}
+```
+
+### Get All Users
+`
+GET: /api/user
+`
+
+Response:
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": [
+        {
+            "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+            "name": "ruang",
+            "email": "ruang@.ac.id",
+            "role": "member",
+            "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+            "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+        }
+    ]
+}
+```
+
+### Delete Users
+`
+DELETE: /api/user/:id
+`
+
+Response:
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": null
+}
+```
+
+### Update Users
+`
+PUT: /api/user/:id
+`
+
+Body JSON:
+```json
+{
+    "name":"ruangGanti",
+    "email":"ruangGanti@.ac.id",
+    "password":"ruangGanti"
+}
+```
+
+Response:
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "id": "79c597be-879b-4d50-98ff-5dd5a114a1d4",
+        "name": "ruangGanti",
+        "email": "ruangGanti@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-20 05:47:40.924679631 +0000 UTC",
+        "updated_at": "2022-06-20 05:47:40.924679701 +0000 UTC"
+    }
 }
 ```

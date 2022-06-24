@@ -3,13 +3,19 @@ import Logo from "../assets/images/Logo Text.png";
 import "../assets/css/RegisterForm.css"
 import { Link } from "react-router-dom";
 
-function LoginForm({ LoginForm, error }) {
-  const [details, setDetails] = useState({ name: "", email: "", password: "" });
+const LoginForm = () =>{
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    LoginForm(details);
-  };
+  const onChangeEmail = (e) => {
+    const value = e.target.value
+    setEmail(value)
+  }
+
+  const onChangePassword = (e) => {
+    const value = e.target.value
+    setPassword(value)
+  }
   return (
     <div class="">
   <div class="mask py-5 d-flex align-items-center h-100 gradient-custom-3">
@@ -23,12 +29,12 @@ function LoginForm({ LoginForm, error }) {
               <form>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" value={email} onChange={onChangeEmail} />
                   <label class="form-label" for="form3Example3cg">Your Email</label>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" value={password} onChange={onChangePassword} />
                   <label class="form-label" for="form3Example4cg">Password</label>
                 </div>
 

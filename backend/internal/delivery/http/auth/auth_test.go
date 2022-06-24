@@ -3,6 +3,7 @@ package auth_http_handler_test
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -43,75 +44,23 @@ type ResponseError struct {
 }
 
 type User struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Email     string `json:"email"`
-	Role      string `json:"role"`
-	createdAt string `json:"created_at"`
-	updatedAt string `json:"updated_at"`
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	Role  string `json:"role"`
 }
 
 var (
 	cfg = config.InitConfig()
 )
 
+var responseUseforDelete ResponseRegister
+
 var _ = Describe("Auth", func() {
-	When("Login", func() {
-		It("Should return data user when logged in", func() {
-			// Given
-			router := mux.NewRouter()
-			db, err := sql.Open("sqlite3", "../../../../halobelajar.db")
-			if err != nil {
-				panic(err)
-			}
-			defer db.Close()
-
-			bodyReader := strings.NewReader(`{"email":"ruang2@.ac.id","password":"ruang2"}`)
-
-			userRepository := repository.NewUserRepository(db)
-
-			route := auth_http_handler.AuthHttpHandler(router, userRepository, cfg)
-			w := httptest.NewRecorder()
-			r, err := http.NewRequest("POST", "/api/auth/login", bodyReader)
-			if err != nil {
-				log.Fatal(err)
-			}
-			route.ServeHTTP(w, r)
-			var logResponse loginResp
-			err = json.Unmarshal([]byte(w.Body.String()), &logResponse)
-
-			Expect(w.Code).To(Equal(200))
-			Expect(logResponse.Message).To(Equal("Success"))
-		})
-
-		It("Should return error when credentials is invalid", func() {
-			router := mux.NewRouter()
-			db, err := sql.Open("sqlite3", "../../../../halobelajar.db")
-			if err != nil {
-				panic(err)
-			}
-			defer db.Close()
-
-			bodyReader := strings.NewReader(`{"email":"ruang2@.ac.id","password":"passwordsalah"}`)
-
-			userRepository := repository.NewUserRepository(db)
-
-			route := auth_http_handler.AuthHttpHandler(router, userRepository, cfg)
-			w := httptest.NewRecorder()
-			r, err := http.NewRequest("POST", "/api/auth/login", bodyReader)
-			if err != nil {
-				log.Fatal(err)
-			}
-			route.ServeHTTP(w, r)
-
-			Expect(w.Body.String()).To(Equal(`{"code":500,"message":"Error","errors":["incorrect password. please enter a password that matches your registered email"]}`))
-		})
-	})
-
 	When("Register", func() {
 		It("Should return data user when registered", func() {
 			router := mux.NewRouter()
-			db, err := sql.Open("sqlite3", "../../../../halobelajar.db")
+			db, err := sql.Open("sqlite3", "./database_test/test.db")
 			if err != nil {
 				panic(err)
 			}
@@ -136,26 +85,17 @@ var _ = Describe("Auth", func() {
 			Expect(response.Message).To(Equal("Success"))
 			Expect(response.Data.Email).To(Equal("percobaan@.ac.id"))
 			Expect(response.Data.Name).To(Equal("percobaan"))
-
-			id := response.Data.ID
-
-			route2 := user_http_handler.UserHttpHandler(router, userRepository, cfg)
-			r, err = http.NewRequest("DELETE", "/api/user/"+id, nil)
-			if err != nil {
-				log.Fatal(err)
-			}
-			route2.ServeHTTP(w, r)
 		})
 
 		It("Should return Error when email registered", func() {
 			router := mux.NewRouter()
-			db, err := sql.Open("sqlite3", "../../../../halobelajar.db")
+			db, err := sql.Open("sqlite3", "./database_test/test.db")
 			if err != nil {
 				panic(err)
 			}
 			defer db.Close()
 
-			bodyReader := strings.NewReader(`{"name":"percobaan","email":"ruang2@.ac.id","password":"percobaan"}`)
+			bodyReader := strings.NewReader(`{"name":"percobaan","email":"percobaan@.ac.id","password":"percobaan"}`)
 
 			userRepository := repository.NewUserRepository(db)
 
@@ -173,6 +113,111 @@ var _ = Describe("Auth", func() {
 			Expect(w.Code).To(Equal(http.StatusInternalServerError))
 			Expect(response.Errors[0]).To(Equal("email already exist"))
 		})
+	})
+
+	When("Login", func() {
+		It("Should return data user when email and password valid", func() {
+			router := mux.NewRouter()
+			db, err := sql.Open("sqlite3", "./database_test/test.db")
+			if err != nil {
+				panic(err)
+			}
+			defer db.Close()
+
+			bodyReader := strings.NewReader(`{"email":"percobaan@.ac.id","password":"percobaan"}`)
+
+			userRepository := repository.NewUserRepository(db)
+
+			route := auth_http_handler.AuthHttpHandler(router, userRepository, cfg)
+			w := httptest.NewRecorder()
+			r, err := http.NewRequest("POST", "/api/auth/login", bodyReader)
+			if err != nil {
+				log.Fatal(err)
+			}
+			route.ServeHTTP(w, r)
+			err = json.Unmarshal([]byte(w.Body.String()), &responseUseforDelete)
+
+			Expect(w.Code).To(Equal(200))
+			Expect(responseUseforDelete.Data.Email).To(Equal("percobaan@.ac.id"))
+			Expect(responseUseforDelete.Message).To(Equal("Success"))
+		})
+
+		It("Should return error when email correct but password is incorrect", func() {
+			router := mux.NewRouter()
+			db, err := sql.Open("sqlite3", "./database_test/test.db")
+			if err != nil {
+				panic(err)
+			}
+			defer db.Close()
+
+			bodyReader := strings.NewReader(`{"email":"percobaan@.ac.id","password":"passwordsalah"}`)
+
+			userRepository := repository.NewUserRepository(db)
+
+			route := auth_http_handler.AuthHttpHandler(router, userRepository, cfg)
+			w := httptest.NewRecorder()
+			r, err := http.NewRequest("POST", "/api/auth/login", bodyReader)
+			if err != nil {
+				log.Fatal(err)
+			}
+			route.ServeHTTP(w, r)
+
+			Expect(w.Body.String()).To(Equal(`{"code":500,"message":"Error","errors":["incorrect password. please enter a password that matches your registered email"]}`))
+		})
+
+		It("Should return error when email is incorrect and password incorrect", func() {
+			router := mux.NewRouter()
+			db, err := sql.Open("sqlite3", "./database_test/test.db")
+			if err != nil {
+				panic(err)
+			}
+			defer db.Close()
+
+			bodyReader := strings.NewReader(`{"email":"percobaan@.ac.id","password":"passwordsalah"}`)
+
+			userRepository := repository.NewUserRepository(db)
+
+			route := auth_http_handler.AuthHttpHandler(router, userRepository, cfg)
+			w := httptest.NewRecorder()
+			r, err := http.NewRequest("POST", "/api/auth/login", bodyReader)
+			if err != nil {
+				log.Fatal(err)
+			}
+			route.ServeHTTP(w, r)
+
+			var response ResponseError
+			err = json.Unmarshal([]byte(w.Body.String()), &response)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			Expect(response.Code).To(Equal(http.StatusInternalServerError))
+			Expect(response.Errors[0]).To(Equal("incorrect password. please enter a password that matches your registered email"))
+			Expect(response.Message).To(Equal("Error"))
+
+			//DELETE USER DATA FOR NEXT TEST
+			id := responseUseforDelete.Data.ID
+			fmt.Println("DELETED ID :", id)
+
+			routerX := mux.NewRouter()
+			dbX, errX := sql.Open("sqlite3", "./database_test/test.db")
+			if errX != nil {
+				panic(errX)
+			}
+			defer dbX.Close()
+
+			userRepositoryX := repository.NewUserRepository(dbX)
+
+			routeX := user_http_handler.UserHttpHandler(routerX, userRepositoryX, cfg)
+			wX := httptest.NewRecorder()
+
+			rX, errX := http.NewRequest("DELETE", "/api/user/"+id, nil)
+			if errX != nil {
+				log.Fatal(errX)
+			}
+			routeX.ServeHTTP(wX, rX)
+		})
+
 	})
 
 })

@@ -31,6 +31,7 @@ func NewUser(payload UserDto) *User {
 		ID:        common.NewID(),
 		Name:      payload.Name,
 		Email:     payload.Email,
+		Password:  payload.Password,
 		Role:      payload.Role,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),

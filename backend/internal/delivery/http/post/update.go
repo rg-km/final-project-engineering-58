@@ -22,6 +22,17 @@ func (x *postHttpHandler) Update(w http.ResponseWriter, r *http.Request) {
 		id = vars["id"]
 	)
 
+	userId, role, errJwt := utils.DecodeJwtToken(r)
+	if errJwt != nil {
+		utils.RespondWithError(w, http.StatusBadRequest, []error{errJwt})
+		return
+	}
+
+	if role != "admin" && role != "constributor" {
+		utils.RespondWithError(w, http.StatusUnauthorized, []error{errors.New("not authorization")})
+		return
+	}
+
 	decoder := json.NewDecoder(r.Body)
 
 	if err := decoder.Decode(&payload); err != nil {
@@ -36,7 +47,7 @@ func (x *postHttpHandler) Update(w http.ResponseWriter, r *http.Request) {
 		Description: payload.Description,
 		UrlVideo: payload.UrlVideo,
 		CategoryID: payload.CategoryID,
-		UserID: payload.UserID,
+		UserID: userId,
 		ParentID: payload.ParentID,
 	}
 

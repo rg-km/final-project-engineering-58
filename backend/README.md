@@ -1,5 +1,21 @@
 # Dokumen Rest API
 
+**Token Admin**
+```json
+eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJhZG1pbiIsInN1YiI6IjhhZjA0NmU0LWYzZjgtNDlhYi1hYjAxLWM1ODUxMGNhYWIwOSJ9.hm19mQnskQAWERIIZ5ayKU3W8yWzymoOqRpJwE9nwyU
+```
+
+**Token Constributor**
+```json
+eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJjb25zdHJpYnV0b3IiLCJzdWIiOiI4YWYwNDZlNC1mM2Y4LTQ5YWItYWIwMS1jNTg1MTBjYWFiMDkifQ.W3tc4xgyQI10n2fAz_yHDj0pAzMWEfxQFPzxDFIVeI8
+```
+
+**Token Member**
+```json
+eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjk5OTk5OTk5OTksInJvbGUiOiJtZW1iZXIiLCJzdWIiOiI4YWYwNDZlNC1mM2Y4LTQ5YWItYWIwMS1jNTg1MTBjYWFiMDkifQ._7IVCyIGCZ8Z2vuMGqQlmutmp1ONS67p0oH5YR4cpic
+```
+
+
 **Daftar Isi**
 - [Dokumen Rest API](#dokumen-rest-api)
 	- [Category](#category)
@@ -8,10 +24,23 @@
 		- [Update Category](#update-category)
 		- [Delete Category](#delete-category)
 	- [Auth](#auth)
-		- [Register](#register)
-		- [Login](#login)
+		- [Register](#register-auth)
+		- [Login](#login-auth)
+	- [Posts](#posts)
+		- [Create Post](#create-post)
+		- [Get All Post](#get-all-post)
+		- [Update Post](#update-post)
+		- [Delete Post](#delete-post)
+	- [Users](#users)
+		- [Create User](#create-user)
+		- [Get All Users](#get-all-users)
+		- [Delete Users](#delete-users)
+		- [Update Users](#update-users)
 
 ## Category
+
+Memerlukan header *Authorization* dengan role `admin`
+
 ### Create Category
 `
 POST: /api/category
@@ -98,5 +127,289 @@ Response:
 	"code": 200,
 	"message": "Success",
 	"data": null
+}
+```
+
+## Auth
+### Register
+`
+POST: /api/auth/register
+`
+
+Body JSON:
+```json
+{
+    "name": "Ruang",
+    "email": "Ruang@ac.id",
+    "password": "Ruang123"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+        "name": "Ruang",
+        "email": "Ruang@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+        "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+    }
+}
+```
+
+### Login
+`
+POST: /api/auth/login
+`
+
+Body JSON:
+```json
+{
+    "email": "Ruang@ac.id",
+    "password": "Ruang123"
+}
+```
+
+Response:
+```json
+{
+    "code": 201,
+    "message": "Success",
+    "data": {
+        "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+        "name": "Ruang",
+        "email": "Ruang@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+        "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+    }
+}
+```
+
+## Posts
+
+Memerlukan header *Authorization* dengan role `admin` atau `constributor`
+
+### Create Post
+`
+POST: /api/post
+`
+
+Body Json:
+
+```json
+{
+	"title": "Belajar Golang Basic",
+	"description": "belajar golang",
+	"content": "golang",
+	"url_video": "https://youtu.be/M8zFCByLGIg",
+	"category_id": "8016c26d-554d-4f11-b0d0-46e9557c2673"
+}
+```
+
+Response:
+```json
+{
+	"code": 201,
+	"message": "Success",
+	"data": {
+		"id": "c69e4486-dbae-4e8a-8976-1c349771d60a",
+		"title": "Belajar Golang Basic",
+		"description": "belajar golang",
+		"content": "golang",
+		"url_video": "https://youtu.be/M8zFCByLGIg",
+		"category_id": "8016c26d-554d-4f11-b0d0-46e9557c2673",
+		"user_id": "8af046e4-f3f8-49ab-ab01-c58510caab09",
+		"parent_id": "",
+		"created_at": "2022-06-23T09:24:19.068798Z",
+		"updated_at": "2022-06-23T09:24:19.0687997Z"
+	}
+}
+```
+
+### Get All Post
+`
+GET: /api/posts
+`
+
+Response:
+```json
+{
+	"code": 200,
+	"message": "Success",
+	"data": [
+		{
+			"id": "c69e4486-dbae-4e8a-8976-1c349771d60a",
+			"title": "Belajar Golang Basic",
+			"description": "belajar golang",
+			"content": "golang",
+			"url_video": "https://youtu.be/M8zFCByLGIg",
+			"category_id": "8016c26d-554d-4f11-b0d0-46e9557c2673",
+			"user_id": "8af046e4-f3f8-49ab-ab01-c58510caab09",
+			"parent_id": "",
+			"created_at": "2022-06-23T09:24:19.068798Z",
+			"updated_at": "2022-06-23T09:24:19.0687997Z"
+		}
+	]
+}
+```
+
+### Update Post
+`
+PUT: /api/post/:id
+`
+
+Body Json:
+
+```json
+{
+	"title": "Belajar Golang Basic",
+	"description": "belajar golang dari awal",
+	"content": "golang",
+	"url_video": "https://youtu.be/M8zFCByLGIg",
+	"category_id": "8016c26d-554d-4f11-b0d0-46e9557c2673"
+}
+```
+
+Response:
+```json
+{
+	"code": 200,
+	"message": "Success",
+	"data": {
+		"id": "c69e4486-dbae-4e8a-8976-1c349771d60a",
+		"title": "Belajar Golang Basic",
+		"description": "belajar golang",
+		"content": "golang",
+		"url_video": "https://youtu.be/M8zFCByLGIg",
+		"category_id": "8016c26d-554d-4f11-b0d0-46e9557c2673",
+		"user_id": "8af046e4-f3f8-49ab-ab01-c58510caab09",
+		"parent_id": "",
+		"created_at": "2022-06-23T09:24:19.068798Z",
+		"updated_at": "2022-06-23T09:24:19.0687997Z"
+	}
+}
+```
+
+### Delete Post
+`
+DELETE: /api/post/:id
+`
+
+Response:
+```json
+{
+	"code": 200,
+	"message": "Success",
+	"data": null
+}
+```
+
+## Users
+
+Memerlukan header *Authorization* dengan role `admin`
+
+### Create User
+`
+POST: /api/user
+`
+
+Body Json:
+
+```json
+{
+	"name": "Febri Hidayan",
+	"email": "febri@app.com",
+	"password": "password",
+	"role": "admin"
+}
+```
+
+>Note: role boleh dimasukan apa saja seperti role `admin`, `constributor`, dan `member`
+
+Response:
+```json
+{
+	"code": 201,
+	"message": "Success",
+	"data": {
+		"id": "43664e69-8baf-4c81-81a6-8791896c46d1",
+		"name": "Febri Hidayan",
+		"email": "febri@app.com",
+		"role": "admin",
+		"created_at": "2022-06-23 09:33:39.9423329 +0000 UTC",
+		"updated_at": "2022-06-23 09:33:39.9423345 +0000 UTC"
+	}
+}
+```
+
+### Get All Users
+`
+GET: /api/user
+`
+
+Response:
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": [
+        {
+            "id": "e6cdf8d6-d380-4880-8042-e12277d2e0da",
+            "name": "ruang",
+            "email": "ruang@.ac.id",
+            "role": "member",
+            "created_at": "2022-06-16 14:15:55.757433367 +0000 UTC",
+            "updated_at": "2022-06-16 14:15:55.757433457 +0000 UTC"
+        }
+    ]
+}
+```
+
+### Delete Users
+`
+DELETE: /api/user/:id
+`
+
+Response:
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": null
+}
+```
+
+### Update Users
+`
+PUT: /api/user/:id
+`
+
+Body JSON:
+```json
+{
+    "name":"ruangGanti",
+    "email":"ruangGanti@.ac.id",
+    "password":"ruangGanti"
+}
+```
+
+Response:
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "id": "79c597be-879b-4d50-98ff-5dd5a114a1d4",
+        "name": "ruangGanti",
+        "email": "ruangGanti@.ac.id",
+        "role": "member",
+        "created_at": "2022-06-20 05:47:40.924679631 +0000 UTC",
+        "updated_at": "2022-06-20 05:47:40.924679701 +0000 UTC"
+    }
 }
 ```

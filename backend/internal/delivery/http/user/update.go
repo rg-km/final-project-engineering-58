@@ -10,24 +10,17 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
-func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
+func (x *userHttpHandler) Update(w http.ResponseWriter, r *http.Request) {
 	var (
 		payload request.CreateUserPayload
-		ctx = context.Background()
+		ctx     = context.Background()
+		vars    = mux.Vars(r)
+		id      = vars["id"]
 	)
-
-	_, role, errJwt := utils.DecodeJwtToken(r)
-	if errJwt != nil {
-		utils.RespondWithError(w, http.StatusBadRequest, []error{errJwt})
-		return
-	}
-
-	if role != "admin" {
-		utils.RespondWithError(w, http.StatusUnauthorized, []error{errors.New("not authorization")})
-		return
-	}
 
 	decoder := json.NewDecoder(r.Body)
 
@@ -37,19 +30,18 @@ func (x userHttpHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	create := entity.UserDto{
-		Name: payload.Name,
-		Email: payload.Email,
+	update := entity.UserDto{
+		Name:     payload.Name,
+		Email:    payload.Email,
 		Password: payload.Password,
-		Role: payload.Role,
 	}
 
-	user, err := x.userUsecase.Create(ctx, create)
+	user, err := x.userUsecase.Update(ctx, update, id)
 
 	if err != nil {
 		utils.RespondWithError(w, exceptions.MapToHttpStatusCode(err.Status), err.Errors.Errors)
 		return
 	}
-	
-	utils.RespondWithJSON(w, http.StatusCreated, response.MapUserDomainToResponse(user))
+
+	utils.RespondWithJSON(w, http.StatusOK, response.MapUserDomainToResponse(user))
 }

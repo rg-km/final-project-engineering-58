@@ -1,4 +1,4 @@
-package auth
+package user
 
 import (
 	"backend/domain/entity"
@@ -8,18 +8,17 @@ import (
 	"github.com/hashicorp/go-multierror"
 )
 
-func (x *authInteractor) Profile(ctx context.Context, userId string) (*entity.User, *exceptions.CustomError) {
+func (x *userInteractor) GetAll(ctx context.Context) ([]*entity.User, *exceptions.CustomError) {
 	var multilerr *multierror.Error
 
-	user, err := x.userRepo.FindByID(ctx, userId)
-
+	users, err := x.userRepo.GetAll(ctx)
 	if err != nil {
 		multilerr = multierror.Append(multilerr, err)
 		return nil, &exceptions.CustomError{
-			Status: exceptions.ERRREPOSITORY,
 			Errors: multilerr,
+			Status: exceptions.ERRREPOSITORY,
 		}
 	}
 
-	return user, nil
+	return users, nil
 }

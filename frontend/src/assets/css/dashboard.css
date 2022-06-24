@@ -1,4 +1,4 @@
-.input-group-text {
+/* .input-group-text {
   width: 100% auto;
   height: 300px;
   margin-top: 50px;
@@ -11,4 +11,18 @@
 .container {
   justify-content: right;
   justify-items: right;
+} */
+.list-group {
+  margin-top: 150px;
+  width: 18%;
+  padding: 20px;
+}
+
+.image {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+p {
+  text-align: center;
 }

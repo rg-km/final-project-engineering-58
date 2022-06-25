@@ -72,17 +72,15 @@ const RegisterForm = () =>{
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={KlikDaftar}>
-                      <Link to="/login">
-                        Register
-                      </Link>
-                  </button>
+                  <Link to="/kelas-saya">
+                    <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={KlikDaftar}>
+                      Register
+                    </button>
+                  </Link>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <Link to="/login"
                     class="fw-bold text-body"><u>Login here</u></Link></p>
-
               </form>
             </div>
           </div>

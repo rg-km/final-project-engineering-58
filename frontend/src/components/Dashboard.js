@@ -89,7 +89,7 @@ function Dashboard() {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link href="#dashboard" id="login">
+                  <Nav.Link href="/kelas-saya" id="login">
                     Dashboard
                   </Nav.Link>
                 </Nav>
@@ -115,10 +115,11 @@ function Dashboard() {
             <br></br>
           </p>
         </a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+        <Link to="/kelas-saya" class="list-group-item list-group-item-action list-group-item-dark">
           <div class="image" />
-          <img alt="" src={kelas} width="20" height="20" /> Kelas Saya
-        </a>
+          <img alt="" src={kelas} width="20" height="20" />
+          Kelas Saya
+        </Link>
         <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
           <div class="image" />
           <img alt="" src={edit} width="20" height="20" />
@@ -129,11 +130,11 @@ function Dashboard() {
           <img alt="" src={pass} width="20" height="20" />
           Ubah Password
         </a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+        <Link to="/" class="list-group-item list-group-item-action list-group-item-dark">
           <div class="image" />
           <img alt="" src={out} width="20" height="20" />
           Keluar
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -60,16 +60,16 @@ function Dashboard() {
           <img alt="" src={kelas} width="20" height="20" />
           Kelas Saya
         </Link>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+        <Link to="/ubah-profil" class="list-group-item list-group-item-action list-group-item-dark">
           <div class="image" />
           <img alt="" src={edit} width="20" height="20" />
           Ubah Profil
-        </a>
-        <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+        </Link>
+        <Link to="/ubah-pass" class="list-group-item list-group-item-action list-group-item-dark">
           <div class="image" />
           <img alt="" src={pass} width="20" height="20" />
           Ubah Password
-        </a>
+        </Link>
         <Link to="/" class="list-group-item list-group-item-action list-group-item-dark">
           <div class="image" />
           <img alt="" src={out} width="20" height="20" />

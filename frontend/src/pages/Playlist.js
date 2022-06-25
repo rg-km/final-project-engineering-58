@@ -10,11 +10,11 @@ const PlaylistHeader = ({ active }) => {
   );
 }
 
-const Playlist = ({videos, active}) => {
+const Playlist = ({videos, active, playlist}) => {
 return (
     <div className='container-playlist'>
-      <PlaylistHeader active={active} total={videos.length} />
-      <PlaylistBox videos={videos} active={active} />
+      <PlaylistHeader active={active} />
+      <PlaylistBox videos={videos} active={active} playlist={playlist} />
     </div>
   );
 }

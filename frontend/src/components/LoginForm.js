@@ -42,7 +42,7 @@ const LoginForm = () =>{
                 
 
                 <div class="d-flex justify-content-center">
-                  <Link to="/kelas-saya" className="text-decoration-none">
+                  <Link to="/dashboard" className="text-decoration-none">
                     <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
                         Login
                     </button>

@@ -13,7 +13,7 @@
   justify-items: right;
 } */
 .list-group {
-  margin-top: 150px;
+  margin-top: 80px;
   width: 18%;
   padding: 20px;
 }
@@ -26,3 +26,8 @@
 p {
   text-align: center;
 }
+
+/* .nav {
+  width: auto;
+  margin: 40px;
+} */

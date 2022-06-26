@@ -16,7 +16,7 @@
     display: -ms-flexbox;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
     border-radius: 20px;
     font-size: 22px;

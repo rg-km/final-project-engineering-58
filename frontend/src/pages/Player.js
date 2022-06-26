@@ -8,16 +8,23 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 const Player = () => {
   const videoList = VideoList;
-  const navigate = useNavigate();
+  const history = useNavigate();
   const location = useLocation();
+  // const match = useRouteMatch();
   let params = useParams();
 
+  const savedState = JSON.parse(localStorage.getItem(`${videoList.playlistId}`));
+
   const [state, setState] = useState({
-    videos: videoList.playlist,
-    activeVideo: videoList.playlist[0],
-    playlistId: videoList.playlistId,
+    videos: savedState? savedState.videos : videoList.playlist,
+    activeVideo: savedState? savedState.activeVideo : videoList.playlist[0],
+    playlistId: savedState? savedState.playlistId : videoList.playlistId,
     autoplay: false
   });
+
+  useEffect(() => {
+    localStorage.setItem(`${state.playlistId}`, JSON.stringify({...state}));
+  }, [state])
 
   useEffect(() => {
     const currVideo = params.activeVideo;
@@ -33,31 +40,24 @@ const Player = () => {
       }));
 
     } else {
-      navigate({
+      history({
         pathname: `/${state.activeVideo.id}`,
-        autoplay: false
+        autoplay: true
       });
     }
-  }, [navigate, location.autoplay, params.activeVideo, state.activeVideo.id, state.videos])
+  }, [history, location.autoplay, params.activeVideo, state.activeVideo.id, state.videos, params.playlistId, state.playlistId])
 
   const handleEndCallback = () => {
     const currVideo = params.activeVideo;
-    const currVideoIndex = state.videos.findIndex(
+    const currentVideoIndex = state.videos.findIndex(
       video => video.id === currVideo
     );
-    const nextVideo = currVideoIndex === state.videos.length - 1 ? 0 : currVideoIndex + 1;
+    const nextVideo = currentVideoIndex === state.videos.length - 1 ? 0 : currentVideoIndex + 1;
 
-    if(nextVideo) {
-      navigate({
-        pathname: `/${state.videos[nextVideo].id}`,
-        autoplay: false
-      });
-    } else {
-      navigate({
-        pathname: `/${state.activeVideo.id}`,
-        autoplay: false
-      });
-    }
+    history({
+      pathname: `/${state.videos[nextVideo].id}`,
+      autoplay: true
+    });
   }
 
   return (
@@ -69,6 +69,7 @@ const Player = () => {
             <Playlist 
               videos={state.videos}
               active={state.activeVideo}
+              playlist={state.playlistId}
             />
             <Video 
               active={state.activeVideo}
@@ -76,9 +77,10 @@ const Player = () => {
               endCallback={handleEndCallback}
             />
           </div>
-        ) : null}
-      </div>
+      ) : null}
     </div>
+    </div>
+    
   )
 }
 

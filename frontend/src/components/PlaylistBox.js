@@ -1,11 +1,9 @@
 import React from 'react';
-// import PlaylistItem from '../PlaylistItem';
 import "../assets/css/PlaylistBox.css"
 import "../assets/css/PlaylistItem.css"
-// import PlaylistItemStyle from '../assets/styles/PlaylistItemStyle';
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const PlaylistItem = ({ video, active, played }) => {
+const PlaylistItem = ({ video, playlist }) => {
   const activeStyle = ({isActive}) => {
     return {
       background: isActive ? '#CBCBCB' : 'none',
@@ -22,7 +20,7 @@ const PlaylistItem = ({ video, active, played }) => {
   );
 }
 
-const PlaylistBox = ({videos, active}) => (
+const PlaylistBox = ({videos, active, playlist}) => (
   <div className="box-playlist">
     {videos.map(video => (
       <PlaylistItem
@@ -30,6 +28,7 @@ const PlaylistBox = ({videos, active}) => (
         video={video}
         active={video.id === active.id}
         played={video.played}
+        playlist={playlist}
       />
     ))}
   </div>

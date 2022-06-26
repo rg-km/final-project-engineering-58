@@ -1,4 +1,4 @@
-.input-group-text {
+/* .input-group-text {
   width: 100% auto;
   height: 300px;
   margin-top: 50px;
@@ -7,3 +7,29 @@
 .input-group {
   width: 50px;
 }
+
+.container {
+  justify-content: right;
+  justify-items: right;
+} */
+.list-group {
+  margin-top: 80px;
+  max-width: 100%;
+  width: 250px;
+  padding: 20px;
+  position: fixed;
+}
+
+.image {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+p {
+  text-align: center;
+}
+
+/* .nav {
+  width: auto;
+  margin: 40px;
+} */

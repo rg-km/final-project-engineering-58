@@ -42,12 +42,11 @@ const LoginForm = () =>{
                 
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                      <Link to="/dashboard" className="text-decoration-none">
+                  <Link to="/dashboard" className="text-decoration-none">
+                    <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
                         Login
-                      </Link>
                     </button>
+                  </Link>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Don't Have an Account? <Link to="/sign-up"

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import "boxicons";
 import "../assets/css/NavVideo.css"
@@ -22,7 +23,7 @@ export default function NavLanding() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#dashboard" id="login">Dashboard</Nav.Link>
+            <Nav.Link id="login"><Link to="/kelas-saya">Dashboard</Link></Nav.Link>
           </Nav>
           <Nav>
             <Navbar.Text id="siswa">Halo, Siswa</Navbar.Text>

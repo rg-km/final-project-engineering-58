@@ -7,7 +7,7 @@ const WatchVideo = () => (
   <div className="container-all-watch-video">
     <>
       <Routes>
-        <Route path="/" element={<Player />} />
+        <Route path="/video" element={<Player />} />
         <Route path="/:activeVideo" element={<Player />} />
       </Routes>
     </>

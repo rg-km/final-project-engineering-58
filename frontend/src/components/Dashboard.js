@@ -2,6 +2,14 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import "../assets/css/dashboard.css";
+// import class from "../assets/images/icons8-class-50.png";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "boxicons";
+import "../assets/css/NavVideo.css";
+
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Logo from "../assets/images/Logo.svg";
 
 function Dashboard() {
   return (
@@ -33,10 +41,13 @@ function Dashboard() {
             <div>
               <div className="uploadv">
                 <span class="input-group-text"></span>
+                <div>
+                  {/* <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+                  </div> */}
+                </div>
               </div>
-              <div class="col align-self-end">
-                <input type="file" class="form-control" id="inputGroupFile02" />
-              </div>
+              <div className="container"></div>
             </div>
           </div>
         </div>

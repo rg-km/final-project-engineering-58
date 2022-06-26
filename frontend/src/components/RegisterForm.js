@@ -42,15 +42,15 @@ const RegisterForm = () =>{
 
   return (
     <div class="">
-  <div class="mask py-5 d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+      <div class="mask py-5 d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card">
+                <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-              <form>
+                  <form>
 
                  <div class="form-floating mb-3">
               <input type="email" class="form-control" id="floatingInput" placeholder="username" value={username} onChange={onChangeUsername}/>
@@ -87,9 +87,9 @@ const RegisterForm = () =>{
             </div>
           </div>
         </div>
+        </div>
+        </div>
       </div>
-    </div>
-  </div>
     </div>
   )
 }

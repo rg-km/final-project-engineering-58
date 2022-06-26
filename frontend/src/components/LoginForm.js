@@ -57,15 +57,15 @@ const LoginForm = () =>{
                 <div class="card-body p-5">
                   <h2 class="text-uppercase text-center mb-5">Login</h2>
                   <form>
-                    <div class="form-outline mb-4">
-                      <input type="email" id="form3Example3cg" class="form-control form-control-lg" value={email} onChange={onChangeEmail} />
-                      <label class="form-label" for="form3Example3cg">Your Email</label>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                      <input type="password" id="form3Example4cg" class="form-control form-control-lg" value={password} onChange={onChangePassword} />
-                      <label class="form-label" for="form3Example4cg">Password</label>
-                    </div>
+                  <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={onChangeEmail}/>
+              <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={onChangePassword}/>
+              <label for="floatingPassword">Password</label>
+              </div>
+              <br></br>
 
                     <div class="d-flex justify-content-center">
                       <Link to="/kelas-saya" className="text-decoration-none">

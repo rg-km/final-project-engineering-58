@@ -30,7 +30,7 @@ const RegisterForm = () =>{
       email : email,
       password : password
     }
-    axios.post('http://localhost:9500/api/auth/register', data)
+    axios.post('http://localhost:8080/api/auth/register', data)
     .then(result =>{
       if(result){
         if(result.data){
@@ -52,7 +52,7 @@ const RegisterForm = () =>{
 
                   <form>
 
-                 <div class="form-floating mb-3">
+                  <div class="form-floating mb-3">
               <input type="email" class="form-control" id="floatingInput" placeholder="username" value={username} onChange={onChangeUsername}/>
               <label for="floatingInput">User name</label>
               </div>
@@ -74,7 +74,7 @@ const RegisterForm = () =>{
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <Link to="/kelas-saya">
+                  <Link to="/login">
                     <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={KlikDaftar}>
                       Register
                     </button>

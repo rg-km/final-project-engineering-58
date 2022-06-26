@@ -40,7 +40,7 @@ const RegisterForm = () =>{
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
               <div class="card">
                 <div class="card-body p-5">
-                  <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                  <h2 class="text-uppercase text-center mb-5">Create a contributor account</h2>
 
                   <form>
 
@@ -72,7 +72,7 @@ const RegisterForm = () =>{
                     </div>
 
                     <div class="d-flex justify-content-center">
-                      <Link to="/kelas-saya">
+                      <Link to="/dashboard">
                         <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={KlikDaftar}>
                           Register
                         </button>

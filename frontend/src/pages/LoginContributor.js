@@ -24,7 +24,7 @@ const LoginForm = () =>{
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
               <div class="card">
                 <div class="card-body p-5">
-                  <h2 class="text-uppercase text-center mb-5">Login</h2>
+                  <h2 class="text-uppercase text-center mb-5">Contributor Login</h2>
                   <form>
                     <div class="form-outline mb-4">
                       <input type="email" id="form3Example3cg" class="form-control form-control-lg" value={email} onChange={onChangeEmail} />
@@ -37,7 +37,7 @@ const LoginForm = () =>{
                     </div>
 
                     <div class="d-flex justify-content-center">
-                      <Link to="/kelas-saya" className="text-decoration-none">
+                      <Link to="/dashboard" className="text-decoration-none">
                         <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
                             Login
                         </button>

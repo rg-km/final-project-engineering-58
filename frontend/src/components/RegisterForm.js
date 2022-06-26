@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../assets/css/RegisterForm.css"
 import { Link } from "react-router-dom"
+import axios from "axios"
 
 
 const RegisterForm = () =>{
@@ -29,7 +30,14 @@ const RegisterForm = () =>{
       email : email,
       password : password
     }
-    
+    axios.post('http://localhost:9500/api/auth/register', data)
+    .then(result =>{
+      if(result){
+        if(result.data){
+
+        }
+      }
+    })
   }
 
   return (
@@ -44,25 +52,19 @@ const RegisterForm = () =>{
 
               <form>
 
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" value={username} onChange={onChangeUsername} />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" value={email} onChange={onChangeEmail}/>
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" value={password} onChange={onChangePassword} />
-                  <label class="form-label" for="form3Example4cg">Password</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                </div>
+                 <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="username" value={username} onChange={onChangeUsername}/>
+              <label for="floatingInput">User name</label>
+              </div>
+                <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={onChangeEmail}/>
+              <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={onChangePassword}/>
+              <label for="floatingPassword">Password</label>
+              </div>
+              <br></br>
 
                 <div class="form-check d-flex justify-content-center mb-5">
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />

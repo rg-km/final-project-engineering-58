@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "../assets/css/KelasSaya.css";
-import Avatar from "../assets/images/kelas-1.jpg";
+import Golang from "../assets/images/golang.jpg";
 import "boxicons";
 import { Link } from "react-router-dom"
 
-export default function CardKelas() {
+export default function CardKelas(/* { image, title, subtitle } */) {
 
-    const [image, setImage] = useState(null);
-    const [title, setTitle] = useState("Lorem Ipsum");
-    const [subtitle, setSubtitle] = useState("Lorem Ipsum Dolor Sit Amet");
+    const [image, setImage] = useState(Golang);
+    const [title, setTitle] = useState("Belajar Golang Basic");
+    const [subtitle, setSubtitle] = useState("belajar golang");
 
     return(
         <div className="container-kelas">

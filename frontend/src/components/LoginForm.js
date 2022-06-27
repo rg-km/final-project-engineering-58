@@ -47,7 +47,7 @@ const LoginForm = () =>{
       setError('Password cannot be empty')
     } else {
       axios
-        .post('api/auth/login', dataUser)
+        .post('http://localhost:8080/api/auth/login', dataUser)
         .then(result => {
           if (result) {
             localStorage.setItem('email', result.data.Account.email)
@@ -61,7 +61,8 @@ const LoginForm = () =>{
           }
         })
         .catch(error => {
-          setError(error.response.data.error)
+          //setError(error.response.data.error)
+          console.log(error.response.data.error)
         })
     }
   }

@@ -16,6 +16,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -37,8 +38,13 @@ func main() {
 
 	ctx, cancel := context.WithCancel(context.Background())
 
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Origin", "Content-Type", "Authorization"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
+	credentialsOk := handlers.AllowCredentials()
+
 	fmt.Println("Project Run on " + cfg.HttpPort)
-	err := http.ListenAndServe(":8080", router)
+	err := http.ListenAndServe(":8080", handlers.CORS(credentialsOk, originsOk, headersOk, methodsOk)(router))
 	if err != nil {
 		log.Fatal(err)
 	}

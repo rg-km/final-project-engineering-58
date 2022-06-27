@@ -49,20 +49,22 @@ const LoginForm = () =>{
       axios
         .post('http://localhost:8080/api/auth/login', dataUser)
         .then(result => {
-          if (result) {
-            localStorage.setItem('email', result.data.Account.email)
-            localStorage.setItem('token', result.data.Account.token)
+          if (result.data.message == "Success") {
+            console.log(result)
+            localStorage.setItem('email', result.data.data.email)
+            localStorage.setItem('token', result.data.token)
             setRedirect(true)
-            setAlert(result.data.massage)
+            setAlert(result.data.data.message)
+            console.log(result.data)
             setTimeout(() => {
-              setAlert(result.data.massage)
+              setAlert(result.data.data.data.message)
             }, 5000)
             window.location.href = '/kelas-saya';
           }
         })
         .catch(error => {
-          //setError(error.response.data.error)
-          console.log(error.response.data.error)
+          setError(error.response.data.errors)
+          console.log(error.response.data.message)
         })
     }
   }

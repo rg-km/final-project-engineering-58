@@ -44,7 +44,7 @@ const RegisterForm = () =>{
   const handleSubmit = (e) => {
     e.preventDefault();
     const dataUser = {
-      username: username,
+      name: username,
       email: email,
       password: password
     }
@@ -57,22 +57,21 @@ const RegisterForm = () =>{
       setError('The username must be between 3 and 20 characters.')
     } else {
       axios
-        .post('api/auth/register', dataUser)
+        .post('http://localhost:8080/api/auth/register', dataUser)
         .then(result => {
-          if (result) {
-            if (result.data) {
+          if (result.data.message == "Success") {
               setUsername('')
               setEmail('')
               setPassword('')
-              setAlert(result.data.massage)
+              setAlert(result.data.data.message)
               setTimeout(() => {
                 setAlert('')
               }, 3000)
+            window.location.href = '/login';
             }
-          }
         })
         .catch(error => {
-          setError(error.reponse.data.massage)
+          setError(error.reponse.data.data.massage)
         })
     }
   }

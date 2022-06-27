@@ -59,7 +59,11 @@ const LoginForm = () =>{
             setTimeout(() => {
               setAlert(result.data.data.data.message)
             }, 5000)
-            window.location.href = '/kelas-saya';
+            if(result.data.data.role == "admin"){
+              window.location.href = '/dashboard';
+            }else if(result.data.data.role == "member"){
+              window.location.href = '/kelas-saya';
+            }
           }
         })
         .catch(error => {

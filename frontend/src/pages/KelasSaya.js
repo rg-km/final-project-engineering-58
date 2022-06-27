@@ -9,6 +9,8 @@ import "../assets/css/dashboard.css";
 
 export default function KelasSaya() {
 
+  // const [classList, setClassList] = useState([]);
+
   return (
     <div className="container-all-kelas-1">
         <div className="container-all-kelas-2">
@@ -17,6 +19,15 @@ export default function KelasSaya() {
             <h1>Kelas Saya</h1>
                 <div className="container-kelas">
                     <CardKelas />
+                    {/* {classList.map((item) => {
+                      return (
+                        <CardKelas
+                          image = {item.image}
+                          title = {item.title}
+                          subtitle = {item.description}
+                        />
+                      );
+                    })} */}
                 </div>
             </div>
         </div>

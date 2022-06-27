@@ -4,10 +4,12 @@ import LandingPage from "./pages/LandingPage";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import Dashboard from "./components/Dashboard";
-import KelasSaya from "./components/KelasSaya";
+import KelasSaya from "./pages/KelasSaya";
 import Player from "./pages/Player";
 import UbahProfil from "./components/UbahProfil";
 import UbahPass from "./components/UbahPass";
+import LoginContributor from "./pages/LoginContributor";
+import RegisContributor from "./pages/RegisContributor";
 
 const App = () =>{
     return (
@@ -22,6 +24,8 @@ const App = () =>{
             <Route path="/:activeVideo" element={<Player />} />
             <Route path="/ubah-profil" element={<UbahProfil />} />
             <Route path="/ubah-pass" element={<UbahPass />} />
+            <Route path="/LoginContributor" element={<LoginContributor />} />
+            <Route path="/RegisContributor" element={<RegisContributor />} />
         </Routes>
         </>
     )

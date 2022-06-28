@@ -1,16 +1,15 @@
 package config
 
 import (
-	"backend/pkg/config"
 	"database/sql"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func InitDatabase() *sql.DB {
-	cfg := config.DatabaseSqlite()
+	//cfg := config.DatabaseSqlite()
 
-	db, err := sql.Open("sqlite3", cfg.Path)
+	db, err := sql.Open("sqlite3", "./halobelajar.db")
 	if err != nil {
 		panic(err)
 	}

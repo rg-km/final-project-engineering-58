@@ -15,6 +15,14 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
+type jsonResponse struct {
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	Token   string      `json:"token"`
+	Data    interface{} `json:"data"`
+	Meta    interface{} `json:"meta,omitempty"`
+}
+
 func (x authHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
 	var (
 		payload request.CreateAuthPayload
@@ -63,5 +71,16 @@ func (x authHttpHandler) Login(w http.ResponseWriter, r *http.Request) {
 		Expires: expirationTime,
 	})
 
-	utils.RespondWithJSON(w, http.StatusOK, response.MapUserDomainToResponse(user))
+	dataResp := response.MapUserDomainToResponse(user)
+	response, _ := json.Marshal(jsonResponse{
+		Code:    http.StatusOK,
+		Message: "Success",
+		Data:    dataResp,
+		Token:   strToken,
+		Meta:    nil,
+	})
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(response)
 }

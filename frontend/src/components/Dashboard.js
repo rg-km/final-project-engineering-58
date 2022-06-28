@@ -42,9 +42,9 @@ function Dashboard() {
               <div className="uploadv">
                 <span class="input-group-text"></span>
                 <div>
-                  {/* <div class="ratio ratio-16x9">
+                  <div class="ratio ratio-16x9">
                     <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
-                  </div> */}
+                  </div>
                 </div>
               </div>
               <div className="container"></div>
